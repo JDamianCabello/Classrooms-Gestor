@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-App::print_login();
+App::print_registerForm();
 
 App::print_footer();
 

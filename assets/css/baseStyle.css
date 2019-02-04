@@ -8,9 +8,6 @@
 }
 
 body{
-    background-image: url("../img/login_background.jpg");
-    background-attachment: fixed;
-    background-size: cover;
     font-family: "IBM-PlexSans";
   }
 
@@ -18,6 +15,7 @@ body{
   height: 50px;
   position: relative;
 }
+
 
 .anadirAula{
   margin-top:50px;
@@ -45,10 +43,96 @@ footer {
     text-align: center;
     padding: 5px;
 }
-footer icon{
+footer a{
     font-size: x-large;
 }
 
 nav {
   top: 0px;
+}
+
+body:before{
+    content: '';
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../img/login_background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+
+}
+
+.contact-form{
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 400px;
+    height: 630px;
+    padding: 80px 40px;
+    background: rgba(0,0,0,0.6);
+}
+
+.avatar{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    top: calc(-30px/2);
+    left: calc(50% - 30px);
+}
+
+.contact-form h2{
+    margin: 0;
+    padding: 0 0 20px;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.contact-form p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: white;
+}
+
+.contact-form input{
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.contact-form input[type=text], .contact-form input[type=email], .contact-form input[type=password], .contact-form input[type=date]{
+    border: none;
+    border-bottom: 1px solid white;
+    background: transparent;
+    outline: none;
+    height: 35px;
+    color: white;
+    font-size: 15px;
+}
+
+.contact-form input[type=submit]{
+    height: 30px;
+    color: white;
+    font-size: 15px;
+    background: #343a40;
+    cursor: pointer;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    margin-top: 15%;
+}
+
+.contact-form input[type=checkbox]{
+    width: 20%;
+
 }

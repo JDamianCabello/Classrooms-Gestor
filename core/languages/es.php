@@ -85,3 +85,19 @@ $itsTic             = "TIC";
 $totalpcs           = "Total de ordenadores";
 $editAula           = "Editar aula";
 $deleteAula         = "Eliminar aula";
+
+
+
+/*********************************************************************************************
+ * Register form strings
+ */
+$register           = "Registrate";
+$register_msg       = "Para solicitar aulas en el sistema";
+$register_username  = "Usuario";
+$register_email     = "Email";
+$register_email_conf= "Confirmar email";
+$register_fNac      = "Fecha de nacimiento";
+$register_pass      = "Contraseña";
+$register_pass_conf = "Confirmar contraseña";
+$register_btnReg    = "Registrarse";
+$register_remenber  = "Recordarme";

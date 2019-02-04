@@ -39,8 +39,8 @@ class App {
         include('../view/footer.php');
     }
 
-    static function print_login(){
-        include('../view/login.php');
+    static function print_registerForm(){
+        include('../view/registerForm.php');
     }
 
     static function print_createClassForm(){

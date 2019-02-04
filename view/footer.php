@@ -19,7 +19,7 @@ require('../core/Language.php');
                     <a href="https://github.com/JDamianCabello"><i class="icon ion-logo-github"></i></a>
                     <a href="https://www.linkedin.com/in/jdamiancabello/"><i class="icon ion-logo-linkedin"></i></a>
                     <a href="https://jdamiancabello.es/""><i class="icon ion-logo-wordpress"></i></a>
-                    <a class="nav-item nav-link" href="../pages/acercaDe.php"><i class="icon ion-md-help"></i></a>
+                    <a href="../pages/acercaDe.php"><i class="icon ion-md-help"></i></a>
                 </p>
             </div>
         </footer>
