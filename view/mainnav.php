@@ -46,7 +46,6 @@
                 <a class="dropdown-item" href="#"><?php echo $administraaula_op2; ?></a>
                 <a class="dropdown-item" href="#"><?php echo $administraaula_op3; ?></a>
             </div>
-        </li>
 
         <!-- Dropdown cambiar idioma -->
         <li class="nav-item dropdown">
@@ -60,5 +59,6 @@
         </li>
     </ul>
     <a class="nav-item nav-link" href="../pages/logout.php"><?php echo $cierrasesion; ?></a>
+
 </nav>
 

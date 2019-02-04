@@ -27,13 +27,17 @@ require('../core/Language.php');
     <h2><?php echo $register; ?></h2>
     <p><?php echo $register_msg; ?></p>
     <form action="">
-        <input type="text" placeholder="<?php echo $register_username; ?>">
-        <input type="email" placeholder="<?php echo $register_email; ?>">
-        <input type="email" placeholder="<?php echo $register_email_conf; ?>">
-        <input type="date" placeholder="<?php echo $register_fNac; ?>">
-        <input type="password" placeholder="<?php echo $register_pass; ?>">
-        <input type="password" placeholder="<?php echo $register_pass_conf; ?>">
+        <input type="text" name="user" placeholder="<?php echo $register_username; ?>">
+        <input type="email" name="email" placeholder="<?php echo $register_email; ?>">
+        <!--
+        <input type="email" name="email2" placeholder="<?php echo $register_email_conf; ?>">
+        -->
+        <input type="date" name="date" placeholder="<?php echo $register_fNac; ?>">
+        <input type="password" name="password" placeholder="<?php echo $register_pass; ?>">
+        <!--
+        <input type="password" name="password2" placeholder="<?php echo $register_pass_conf; ?>">
+        -->
         <input type="submit" value="<?php echo $register_btnReg; ?>">
-        <p><input type="checkbox"><?php echo $register_remenber; ?></p>
+        <p><input type="checkbox" name="register"><?php echo $register_remenber; ?></p>
     </form>
 </div>

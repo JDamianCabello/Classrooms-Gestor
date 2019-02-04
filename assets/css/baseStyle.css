@@ -51,6 +51,7 @@ nav {
   top: 0px;
 }
 
+/*
 body:before{
     content: '';
     position: fixed;
@@ -64,7 +65,7 @@ body:before{
     -webkit-background-size: cover;
 
 }
-
+*/
 .contact-form{
     position: absolute;
     top: 50%;
@@ -75,9 +76,10 @@ body:before{
     -o-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
     width: 400px;
-    height: 630px;
+    height: 500px;
     padding: 80px 40px;
     background: rgba(0,0,0,0.6);
+    border-radius: 15px;
 }
 
 .avatar{

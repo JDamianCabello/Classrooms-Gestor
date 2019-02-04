@@ -27,8 +27,8 @@ else{
         echo "<tbody>";
         foreach ($listEstudiantes as $fila) {
             echo "<tr>";
-            echo "<td><a href='#'>".$fila['nombrecorto']."</a></td>";
-            echo "<td>".$fila['nombre']."</td><td>".$fila['ubicacion']."</td>";
+            echo "<td>".$fila['nombrecorto']."</td>";
+            echo "<td>".substr($fila['nombre'], 0, 50)."</td><td>".$fila['ubicacion']."</td>";
 
             if($fila['tic'] == 0)
                 echo "<td>NO</td><td></td>";
@@ -36,7 +36,7 @@ else{
                 echo "<td>SI</td><td>".$fila['numordenadores']."</td>";
             }
 
-
+            echo "<td><a href=\"#\" class=\"btn btn-success\" role=\"button\">Reservar aula</a></td>";
             echo "<td><a href=\"#\" class=\"btn btn-info\" role=\"button\">Editar aula</a></td>";
             echo "<td><a href=\"#\" class=\"btn btn-danger\" role=\"button\">Eliminar aula</a></td>";
             echo "</tr>";

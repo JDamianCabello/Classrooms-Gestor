@@ -30,7 +30,7 @@
         <form method="post">
             <input type="text" name="user" id="inputUser" placeholder="<?php echo $user_name; ?>">
             <input type="password" name="password" id="inputPassword" placeholder="<?php echo $user_password; ?>">
-            <input type="submit" name="" value="<?php echo $acess; ?>">
+            <input type="submit" name="login" value="<?php echo $acess; ?>">
         </form>
     </div>
 </nav>

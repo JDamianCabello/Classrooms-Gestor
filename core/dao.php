@@ -2,8 +2,8 @@
 
 define('DATABASE', 'gestionaulas');
 define('HOST', 'localhost');
-define('USER', 'www-data');
-define('PASS', 'usuario');
+define('USER', 'root');
+define('PASS', '');
 
 define('DSN', "mysql:host=" . HOST . ";dbname=" . DATABASE);
 
@@ -11,6 +11,9 @@ define('DSN', "mysql:host=" . HOST . ";dbname=" . DATABASE);
 define('TABLE_LOGIN', 'login');
 define('COLUMN_LOGIN_USUARIO', 'usuario');
 define('COLUMN_LOGIN_CONTRASENIA', 'contrasenia');
+
+
+define('TABLE_USER', 'usuario');
 
 
 define('TABLE_AULA', 'aula');
@@ -65,6 +68,17 @@ class Dao
         }
     }
 
+    function  insertUser($user, $pass, $email, $date){
+        try {
+            $sql = "INSERT INTO " . TABLE_USER . " (nombre, fnac, email) VALUES ('" . $user . "','CAST('" . $date . "' AS DATE)','" . $email ."')";
+            $this->conn->query($sql);
+            $sql = "INSERT INTO " . TABLE_LOGIN . " (usuario, contrasenia) VALUES (" . $user . ",SHA2(".$pass.", 512))";
+            $this->conn->query($sql);
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+        }
+    }
+
     function getAulas()
     {
         try {
@@ -86,7 +100,4 @@ class Dao
             $this->error = $e->getMessage();
         }
     }
-
-
-
 }

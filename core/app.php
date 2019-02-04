@@ -105,4 +105,9 @@ class App {
         return $this->dao->getDBScript($rutaDescarga);
     }
 
+    function  insertUser($user, $pass, $email, $date){
+        return $this->dao->insertUser($user, $pass, $email, $date);
+    }
+
+
 }

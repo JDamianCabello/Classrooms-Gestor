@@ -8,7 +8,7 @@ App::print_head();
 
 App::printExternalNav();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (!empty($_POST['login'])) {
     $user = $_POST["user"];
     $pass = $_POST["password"];
 
@@ -23,6 +23,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die();
         } else {
             echo "Login erroneo";
+        }
+    }
+}
+
+if (!empty($_POST['register'])) {
+    $user = $_POST["user"];
+    $pass = $_POST["password"];
+    $email = $_POST["email"];
+    $date = $_POST['date'];
+
+    $app = new App();
+    $app->getDao()->insertUser($user, $pass,$email, $date);
+    if (!$app->getDao()->isConected()) {
+        echo "<p>".$app->getDao()->error."</p>";
+    } else {
+        if ($app->getDao()->authenticate($user, $pass)) {
+            $app -> saveSession($user);
+            header("Location: lobby.php");
+            die();
         }
     }
 }
