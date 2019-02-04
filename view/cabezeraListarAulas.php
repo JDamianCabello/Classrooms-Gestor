@@ -7,6 +7,7 @@
  */
 require ('../core/Language.php');
 ?>
+
 <thead>
     <tr>
         <th scope='col'><?php echo $shortname; ?></th>

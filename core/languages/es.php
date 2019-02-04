@@ -13,12 +13,12 @@ $site_title          = "Gestor de aulas";
 
 
 //Dropdown alumnos
-$alumnos            = "Alumnos";
-$alumnos_anadir     = "Añadir alumno";
-$alumnos_listar     = "Listar alumnos";
+$reservas           = "Reservas";
+$reservas_anadir    = "Crear nueva reserva";
+$reservas_listar    = "Listar todas las reservas";
 
 //Dropdown aula
-$aula               = "Aula";
+$aula               = "Aulas";
 $aula_anadir        = "Añadir nueva aula";
 $aula_listar        = "Listar aulas";
 

@@ -13,9 +13,9 @@ $site_title          = "Classrooms gestor";
 
 
 //Dropdown alumnos
-$alumnos            = "Students";
-$alumnos_anadir     = "Add Student";
-$alumnos_listar     = "List all Students";
+$reservas           = "Reservations";
+$reservas_anadir    = "Create new reservation";
+$reservas_listar    = "List all reservations";
 
 //Dropdown aula
 $aula               = "Classrooms";
