@@ -43,7 +43,10 @@ footer {
     background-color:#343a40;
     color: white;
     text-align: center;
-  padding: 5px;
+    padding: 5px;
+}
+footer icon{
+    font-size: x-large;
 }
 
 nav {

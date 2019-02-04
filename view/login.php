@@ -19,4 +19,3 @@ require('../core/Language.php');
         <a href="register.php"><?php echo $register; ?></a>
     </form>
 
-

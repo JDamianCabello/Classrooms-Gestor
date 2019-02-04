@@ -26,6 +26,12 @@
             </div>
         </li>
     </ul>
-    <a class="nav-item nav-link" href="../pages/acercaDe.php"><?php echo $about; ?></a>
+    <div class="login-container">
+        <form method="post">
+            <input type="text" name="user" id="inputUser" placeholder="<?php echo $user_name; ?>">
+            <input type="password" name="password" id="inputPassword" placeholder="<?php echo $user_password; ?>">
+            <input type="submit" name="" value="<?php echo $acess; ?>">
+        </form>
+    </div>
 </nav>
 
