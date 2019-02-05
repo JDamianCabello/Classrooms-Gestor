@@ -27,6 +27,7 @@ require('../core/Language.php');
     <h2><?php echo $register; ?></h2>
     <p><?php echo $register_msg; ?></p>
     <form action="">
+        <input type="text" name="name" placeholder="<?php echo $register_name; ?>">
         <input type="text" name="user" placeholder="<?php echo $register_username; ?>">
         <input type="email" name="email" placeholder="<?php echo $register_email; ?>">
         <!--
@@ -38,6 +39,5 @@ require('../core/Language.php');
         <input type="password" name="password2" placeholder="<?php echo $register_pass_conf; ?>">
         -->
         <input type="submit" value="<?php echo $register_btnReg; ?>">
-        <p><input type="checkbox" name="register"><?php echo $register_remenber; ?></p>
     </form>
 </div>

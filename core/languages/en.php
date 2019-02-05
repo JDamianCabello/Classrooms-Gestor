@@ -83,8 +83,11 @@ $fullname           = "Full name";
 $position           = "Position";
 $itsTic             = "TIC";
 $totalpcs           = "Total pc";
+$reservaAula        = "Reserve class";
 $editAula           = "Edit class";
 $deleteAula         = "Delete class";
+$yesTic             = "YES";
+$noTic              = "NO";
 
 
 
@@ -93,6 +96,7 @@ $deleteAula         = "Delete class";
  */
 $register           = "Sign up";
 $register_msg       = "And request classrooms in the system";
+$register_name      = "Name";
 $register_username  = "User";
 $register_email     = "E-mail";
 $register_email_conf= "Confirm E-mail";

@@ -1,6 +1,7 @@
 <?php
 include_once("../core/app.php");
 
+
 $app = new App();
 $app->validateSesion();
 
@@ -30,15 +31,18 @@ else{
             echo "<td>".$fila['nombrecorto']."</td>";
             echo "<td>".substr($fila['nombre'], 0, 50)."</td><td>".$fila['ubicacion']."</td>";
 
-            if($fila['tic'] == 0)
-                echo "<td>NO</td><td></td>";
+            if($fila['tic'] == 0) {
+                echo "<td>";
+                include('../view/no.php');
+                echo "</td><td></td>";
+            }
             else{
-                echo "<td>SI</td><td>".$fila['numordenadores']."</td>";
+                echo "<td>";
+                include('../view/yes.php');
+                echo "</td><td>".$fila['numordenadores']."</td>";
             }
 
-            echo "<td><a href=\"#\" class=\"btn btn-success\" role=\"button\">Reservar aula</a></td>";
-            echo "<td><a href=\"#\" class=\"btn btn-info\" role=\"button\">Editar aula</a></td>";
-            echo "<td><a href=\"#\" class=\"btn btn-danger\" role=\"button\">Eliminar aula</a></td>";
+            App::print_listAulas_Buttons();
             echo "</tr>";
         }
         echo "</tbody>";

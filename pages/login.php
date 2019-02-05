@@ -9,8 +9,8 @@ App::print_head();
 App::printExternalNav();
 
 if (!empty($_POST['login'])) {
-    $user = $_POST["user"];
-    $pass = $_POST["password"];
+    $user = $_POST["login_user"];
+    $pass = $_POST["login_password"];
 
     $app = new App();
     if (!$app->getDao()->isConected()) {
@@ -29,12 +29,13 @@ if (!empty($_POST['login'])) {
 
 if (!empty($_POST['register'])) {
     $user = $_POST["user"];
+    $username = $_POST["name"];
     $pass = $_POST["password"];
     $email = $_POST["email"];
     $date = $_POST['date'];
 
     $app = new App();
-    $app->getDao()->insertUser($user, $pass,$email, $date);
+    $app->getDao()->insertUser($user,$username, $pass,$email, $date);
     if (!$app->getDao()->isConected()) {
         echo "<p>".$app->getDao()->error."</p>";
     } else {

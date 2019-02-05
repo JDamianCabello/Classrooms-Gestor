@@ -2,18 +2,16 @@
 
 define('DATABASE', 'gestionaulas');
 define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
+define('USER', 'www-data');
+define('PASS', 'usuario');
 
 define('DSN', "mysql:host=" . HOST . ";dbname=" . DATABASE);
 
 // tablas
-define('TABLE_LOGIN', 'login');
-define('COLUMN_LOGIN_USUARIO', 'usuario');
-define('COLUMN_LOGIN_CONTRASENIA', 'contrasenia');
-
 
 define('TABLE_USER', 'usuario');
+define('COLUMN_LOGIN_USUARIO', 'usuario');
+define('COLUMN_LOGIN_CONTRASENIA', 'password');
 
 
 define('TABLE_AULA', 'aula');
@@ -44,7 +42,7 @@ class Dao
         if (!isset($user, $password)) {
             return false;
         }
-        $sql = "SELECT * FROM " . TABLE_LOGIN . " WHERE " . COLUMN_LOGIN_USUARIO . "='$user' AND " . COLUMN_LOGIN_CONTRASENIA . "=SHA2('$password', 512)";
+        $sql = "SELECT * FROM " . TABLE_USER . " WHERE " . COLUMN_LOGIN_USUARIO . "='$user' AND " . COLUMN_LOGIN_CONTRASENIA . "=SHA2('$password', 512)";
         $stmt = $this->conn->query($sql);
 
         if (($stmt->rowCount() == 1)) {
@@ -68,12 +66,14 @@ class Dao
         }
     }
 
-    function  insertUser($user, $pass, $email, $date){
+    function  insertUser($user, $username, $pass, $email, $date){
         try {
-            $sql = "INSERT INTO " . TABLE_USER . " (nombre, fnac, email) VALUES ('" . $user . "','CAST('" . $date . "' AS DATE)','" . $email ."')";
-            $this->conn->query($sql);
-            $sql = "INSERT INTO " . TABLE_LOGIN . " (usuario, contrasenia) VALUES (" . $user . ",SHA2(".$pass.", 512))";
-            $this->conn->query($sql);
+            $sql = "INSERT INTO " . TABLE_USER . " ('nombre', 'fnac', 'email', 'admin', 'usuario', 'password') VALUES ('" . $user . "','" . $date . "','" . $email ."','0','".$username."','".$pass."')";
+            if(exec($sql))
+                return true;
+             else
+                 return false;
+            //$this->conn->query($sql);
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }

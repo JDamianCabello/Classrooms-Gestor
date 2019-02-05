@@ -28,8 +28,8 @@
     </ul>
     <div class="login-container">
         <form method="post">
-            <input type="text" name="user" id="inputUser" placeholder="<?php echo $user_name; ?>">
-            <input type="password" name="password" id="inputPassword" placeholder="<?php echo $user_password; ?>">
+            <input type="text" name="login_user" id="inputUser" placeholder="<?php echo $user_name; ?>">
+            <input type="password" name="login_password" id="inputPassword" placeholder="<?php echo $user_password; ?>">
             <input type="submit" name="login" value="<?php echo $acess; ?>">
         </form>
     </div>

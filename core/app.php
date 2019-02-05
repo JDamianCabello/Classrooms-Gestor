@@ -17,6 +17,10 @@ class App {
         include('../view/cabezeraListarAulas.php');
     }
 
+    static function print_listAulas_Buttons()
+    {
+        include('../view/listarAulas_buttons.php');
+    }
 
     static function print_head_NoBootsrap() {
         include('../view/head_noboostrap.php');
@@ -105,8 +109,8 @@ class App {
         return $this->dao->getDBScript($rutaDescarga);
     }
 
-    function  insertUser($user, $pass, $email, $date){
-        return $this->dao->insertUser($user, $pass, $email, $date);
+    function  insertUser($user,$username, $pass, $email, $date){
+        return $this->dao->insertUser($user, $username, $pass, $email, $date);
     }
 
 

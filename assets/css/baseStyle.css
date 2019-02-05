@@ -9,6 +9,15 @@
 
 body{
     font-family: "IBM-PlexSans";
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../img/login_background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
   }
 
 .container {
@@ -51,21 +60,8 @@ nav {
   top: 0px;
 }
 
-/*
-body:before{
-    content: '';
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background-image: url("../img/login_background.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    -webkit-background-size: cover;
 
-}
-*/
+
 .contact-form{
     position: absolute;
     top: 50%;
@@ -131,10 +127,5 @@ body:before{
     border-radius: 25px;
     border: none;
     outline: none;
-    margin-top: 15%;
-}
-
-.contact-form input[type=checkbox]{
-    width: 20%;
-
+    margin-top: 5%;
 }
