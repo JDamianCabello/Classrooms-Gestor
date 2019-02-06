@@ -33,16 +33,18 @@ else{
 
             if($fila['tic'] == 0) {
                 echo "<td>";
-                include('../view/no.php');
+                echo 'NO';
                 echo "</td><td></td>";
             }
             else{
                 echo "<td>";
-                include('../view/yes.php');
+                echo 'SI';
                 echo "</td><td>".$fila['numordenadores']."</td>";
             }
 
-            App::print_listAulas_Buttons();
+            echo "<td><a href=\"#\" class=\"btn btn-secondary\" role=\"button\">Reservar aula</a></td>";
+            echo "<td><a href=\"#\" class=\"btn btn-info\" role=\"button\">Editar aula</a></td>";
+            echo "<td><a href=\"#\" class=\"btn btn-danger\" role=\"button\">Eliminar aula</a></td>";
             echo "</tr>";
         }
         echo "</tbody>";

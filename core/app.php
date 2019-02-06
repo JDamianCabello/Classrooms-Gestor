@@ -22,11 +22,6 @@ class App {
         include('../view/listarAulas_buttons.php');
     }
 
-    static function print_head_NoBootsrap() {
-        include('../view/head_noboostrap.php');
-    }
-
-
     static function printNav(){
         include('../view/mainnav.php');
     }
@@ -58,6 +53,7 @@ class App {
     function saveSession($user){
         $_SESSION['user'] = $user;
     }
+
 
     function validateSesion(){
         session_start();
@@ -109,8 +105,8 @@ class App {
         return $this->dao->getDBScript($rutaDescarga);
     }
 
-    function  insertUser($user,$username, $pass, $email, $date){
-        return $this->dao->insertUser($user, $username, $pass, $email, $date);
+    function  insertUser($user,$name, $pass, $email, $date){
+        return $this->dao->insertUser($user, $name, $pass, $email, $date);
     }
 
 

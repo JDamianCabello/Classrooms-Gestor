@@ -9,35 +9,16 @@
 require('../core/Language.php');
 ?>
 
-<!--
-<form method="post">
-    <h4>Register form</h4>
-    <input type="text" name="name" id="inputUser" placeholder="Name">
-    <input type="email" name="email" id="inputUser" placeholder="E-mail">
-    <input type="text" name="fnac" id="inputUser" placeholder="Birth date">
-    <input type="text" name="user" id="inputUser" placeholder="Username">
-    <input type="password" name="password" id="inputPassword" placeholder="Password">
-    <input type="password" name="passwordconfirm" id="inputPassword" placeholder="Confirm password">
-    <input type="submit" name="" value="Register"><input type="submit" name="" value="Go back">
-</form>
--->
-
-<div class="contact-form">
+<div class="register-form">
     <img src="../assets/img/register.png" class="avatar">
     <h2><?php echo $register; ?></h2>
     <p><?php echo $register_msg; ?></p>
-    <form action="">
-        <input type="text" name="name" placeholder="<?php echo $register_name; ?>">
-        <input type="text" name="user" placeholder="<?php echo $register_username; ?>">
-        <input type="email" name="email" placeholder="<?php echo $register_email; ?>">
-        <!--
-        <input type="email" name="email2" placeholder="<?php echo $register_email_conf; ?>">
-        -->
-        <input type="date" name="date" placeholder="<?php echo $register_fNac; ?>">
-        <input type="password" name="password" placeholder="<?php echo $register_pass; ?>">
-        <!--
-        <input type="password" name="password2" placeholder="<?php echo $register_pass_conf; ?>">
-        -->
-        <input type="submit" value="<?php echo $register_btnReg; ?>">
+    <form method="post">
+        <input type="text" name="name" placeholder="<?php echo $register_name; ?>" required>
+        <input type="text" name="user" placeholder="<?php echo $register_username; ?>" required>
+        <input type="email" name="email" placeholder="<?php echo $register_email; ?>" required>
+        <input type="date" name="date" placeholder="<?php echo $register_fNac; ?>" content="">
+        <input type="password" name="password" placeholder="<?php echo $register_pass; ?>" required>
+        <input type="submit" name="register" value="<?php echo $register_btnReg; ?>">
     </form>
 </div>

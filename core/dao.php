@@ -2,8 +2,8 @@
 
 define('DATABASE', 'gestionaulas');
 define('HOST', 'localhost');
-define('USER', 'www-data');
-define('PASS', 'usuario');
+define('USER', 'root');
+define('PASS', '');
 
 define('DSN', "mysql:host=" . HOST . ";dbname=" . DATABASE);
 
@@ -42,9 +42,9 @@ class Dao
         if (!isset($user, $password)) {
             return false;
         }
-        $sql = "SELECT * FROM " . TABLE_USER . " WHERE " . COLUMN_LOGIN_USUARIO . "='$user' AND " . COLUMN_LOGIN_CONTRASENIA . "=SHA2('$password', 512)";
+        $sql = "SELECT usuario, password FROM ".TABLE_USER." WHERE usuario = '".$user."'  AND password = SHA2(\"".$password."\",512)";
         $stmt = $this->conn->query($sql);
-
+        var_dump($sql);
         if (($stmt->rowCount() == 1)) {
             return true;
         }
@@ -66,14 +66,14 @@ class Dao
         }
     }
 
-    function  insertUser($user, $username, $pass, $email, $date){
+    function  insertUser($user, $name, $pass, $email, $date){
         try {
-            $sql = "INSERT INTO " . TABLE_USER . " ('nombre', 'fnac', 'email', 'admin', 'usuario', 'password') VALUES ('" . $user . "','" . $date . "','" . $email ."','0','".$username."','".$pass."')";
-            if(exec($sql))
+            $sql = "INSERT INTO ".TABLE_USER. "(nombre, fnac, email, admin, usuario, password) VALUES ('".$name."','".$date."','".$email."',0,'".$user."',SHA2(\"".$pass."\",512))";
+            if ($this->conn->exec($sql) === false){
+                return false;
+            }else {
                 return true;
-             else
-                 return false;
-            //$this->conn->query($sql);
+            }
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }
@@ -85,6 +85,19 @@ class Dao
             $sql = "SELECT nombrecorto, nombre, ubicacion, tic, numordenadores FROM " . TABLE_AULA;
             $resultset = $this->conn->query($sql);
             return $resultset;
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+        }
+    }
+
+
+    function getID($user)
+    {
+        try {
+            $sql = "SELECT id FROM " . TABLE_USER . " WHERE usuario = '" . $user . "'";
+            $resultset = $this->conn->query($sql);
+            $listEstudiantes=$resultset->fetchAll();
+
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }

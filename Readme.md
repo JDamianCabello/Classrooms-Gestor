@@ -11,6 +11,7 @@ Gestor de aulas web creado en PHP con llamadas a una BD, necesita tener
 un usuario en MySQL con permisos para la ejecucción de comandos.
 
 > El usuario y contraseña de deben ir en el fichero ../core/dao.php
+> Por defecto el usuario es www-data y la contraseña usuario.
 
 
 **Version log**
@@ -42,18 +43,34 @@ un usuario en MySQL con permisos para la ejecucción de comandos.
 	 - Se crea una vista (aún sin estilos) para los métodos.
 	 - Se añade en la BD el campo admin para futuras mejoras.
 	 - Se crea la vista registerForm.php
-
+ - 0.65
+	 - Se pueden crear usuarios en la BD. Funciona el formulario de registro.
+	 - Refactorizados algunos estilos.
+	 - Refactorizada la BD (ahora ya no hay login y user, son las dos una tabla).
+	 - Traducida la cabecera de listar aulas.
+	 - Eliminado `view/head_noboostrap.php` no era necesario.
+	 - Implementado el campo admin de tipo TINYINT(1) en la tabla usuario.
 
 	
 
 ## TODO
 
- - [ ] Hacer el registro funcional.
- - [ ] Hacer jerarquía de privilegios al sistema.
+ - [x] Hacer el registro funcional.
+ - [ ] Hacer jerarquía de privilegios al sistema. Ya implementao en BD
+ 
+|ADMIN     |USER     |
+|----------|---------|
+| true (1) |false (0)|
+
  - [ ] ¿Posible refactorización del navbar?
- - [ ] Migrar el proyecto a mi dominio para ver un ejemplo online.
+ - [x] Migrar el proyecto a mi dominio para ver un ejemplo online.
  - [ ] Posibilidad de buscar aulas.
  - [ ] Posibilidad de reservar aulas (en sus seis tramos)
  - [ ] Editar aulas ya creadas.
  - [ ] Deshabilitar aulas del sistema.
  - [ ] Consultar reservas de aulas.
+ - [ ] Crear un form de creación de aulas.
+ - [ ] Añadir el nombre del usuario al navbar
+ - [ ] Añadir pestaña settings.
+ - [ ] Comentar el codigo.
+ - [ ] AL ACABAR: ¿Refactorizar?.

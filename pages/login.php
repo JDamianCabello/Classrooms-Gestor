@@ -14,36 +14,31 @@ if (!empty($_POST['login'])) {
 
     $app = new App();
     if (!$app->getDao()->isConected()) {
+        var_dump($app);
         echo "<p>".$app->getDao()->error."</p>";
     } else {
         if ($app->getDao()->authenticate($user, $pass)) {
-            echo "Login correcto";
             $app -> saveSession($user);
             header("Location: lobby.php");
             die();
-        } else {
-            echo "Login erroneo";
         }
     }
 }
 
 if (!empty($_POST['register'])) {
     $user = $_POST["user"];
-    $username = $_POST["name"];
+    $name = $_POST["name"];
     $pass = $_POST["password"];
     $email = $_POST["email"];
     $date = $_POST['date'];
 
+    if($date == "0000-00-00")
+        exit();
     $app = new App();
-    $app->getDao()->insertUser($user,$username, $pass,$email, $date);
-    if (!$app->getDao()->isConected()) {
-        echo "<p>".$app->getDao()->error."</p>";
-    } else {
-        if ($app->getDao()->authenticate($user, $pass)) {
-            $app -> saveSession($user);
-            header("Location: lobby.php");
-            die();
-        }
+    if($app->getDao()->insertUser($user,$name, $pass,$email, $date)){
+        $app -> saveSession($user);
+        header("Location: lobby.php");
+        die();
     }
 }
 

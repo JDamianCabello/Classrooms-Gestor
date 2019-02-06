@@ -62,7 +62,7 @@ nav {
 
 
 
-.contact-form{
+.register-form{
     position: absolute;
     top: 50%;
     left: 25%;
@@ -88,7 +88,7 @@ nav {
     left: calc(50% - 30px);
 }
 
-.contact-form h2{
+.register-form h2{
     margin: 0;
     padding: 0 0 20px;
     color: white;
@@ -96,19 +96,19 @@ nav {
     text-transform: uppercase;
 }
 
-.contact-form p{
+.register-form p{
     margin: 0;
     padding: 0;
     font-weight: bold;
     color: white;
 }
 
-.contact-form input{
+.register-form input{
     width: 100%;
     margin-bottom: 15px;
 }
 
-.contact-form input[type=text], .contact-form input[type=email], .contact-form input[type=password], .contact-form input[type=date]{
+.register-form input[type=text], .register-form input[type=email], .register-form input[type=password], .register-form input[type=date]{
     border: none;
     border-bottom: 1px solid white;
     background: transparent;
@@ -118,7 +118,7 @@ nav {
     font-size: 15px;
 }
 
-.contact-form input[type=submit]{
+.register-form input[type=submit]{
     height: 30px;
     color: white;
     font-size: 15px;
