@@ -2,8 +2,8 @@
 
 define('DATABASE', 'gestionaulas');
 define('HOST', 'localhost');
-define('USER', 'www-data');
-define('PASS', 'usuario');
+define('USER', 'root');
+define('PASS', '');
 
 define('DSN', "mysql:host=" . HOST . ";dbname=" . DATABASE);
 
@@ -15,6 +15,8 @@ define('COLUMN_LOGIN_CONTRASENIA', 'password');
 
 
 define('TABLE_AULA', 'aula');
+
+define('TABLE_RESERVE', 'reserva');
 
 
 
@@ -44,8 +46,7 @@ class Dao
         }
         $sql = "SELECT usuario, password FROM ".TABLE_USER." WHERE usuario = '".$user."'  AND password = SHA2(\"".$password."\",512)";
         $stmt = $this->conn->query($sql);
-        var_dump($sql);
-        if (($stmt->rowCount() == 1)) {
+        if ($stmt->rowCount() == 1) {
             return true;
         }
         return false;
@@ -55,10 +56,21 @@ class Dao
      * Métodos de gestión de aulas
      */
 
-    function insertAula($nomcorto, $nombreAula, $posicion, $estic, $pccount)
+    function insertAula($nombre, $descripcion,$posicion,$estic,$pccount)
     {
         try {
-            $sql = "INSERT INTO " . TABLE_AULA . " (nombrecorto, nombre, ubicacion, tic, numordenadores) VALUES ('" . $nomcorto . "','" . $nombreAula . "','" . $posicion . "','" . $estic . "','" . $pccount . "')";
+            $sql = "INSERT INTO " . TABLE_AULA . " (nombre, descripcion, ubicacion, tic, numordenadores) VALUES ('" . $nombre . "','" . $descripcion . "','" . $posicion . "','" . $estic . "','" . $pccount . "')";
+            $resultset = $this->conn->query($sql);
+            return $resultset;
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+        }
+    }
+
+    function deletetAula($nombre)
+    {
+        try {
+            $sql = "DELETE FROM ".TABLE_AULA." WHERE nombre =".$nombre;
             $resultset = $this->conn->query($sql);
             return $resultset;
         } catch (PDOException $e) {
@@ -79,10 +91,34 @@ class Dao
         }
     }
 
+    function  insertReserve($usuario, $aula, $fecha, $hora){
+        try {
+            if($hora == 'all'){
+                $sql = "SELECT * FROM ".TABLE_RESERVE." WHERE aula = '".$aula."' AND fecha = '".$fecha."'";
+
+                $stmt = $this->conn->query($sql);
+                if ($stmt->rowCount() != 0) {
+                    return false;
+                }
+                else
+                    $sql = "INSERT INTO ".TABLE_RESERVE. "(usuario, aula, fecha, tramo) VALUES ('".$usuario."','".$aula."','".$fecha."','8:15'),('".$usuario."','".$aula."','".$fecha."','9:15'),('".$usuario."','".$aula."','".$fecha."','10:15'),('".$usuario."','".$aula."','".$fecha."','11:45'),('".$usuario."','".$aula."','".$fecha."','12:45'),('".$usuario."','".$aula."','".$fecha."','13:45')";
+            }
+            else
+                $sql = "INSERT INTO ".TABLE_RESERVE. "(usuario, aula, fecha, tramo) VALUES ('".$usuario."','".$aula."','".$fecha."','".$hora."')";
+            if ($this->conn->exec($sql) === false){
+                return false;
+            }else {
+                return true;
+            }
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+        }
+    }
+
     function getAulas()
     {
         try {
-            $sql = "SELECT nombrecorto, nombre, ubicacion, tic, numordenadores FROM " . TABLE_AULA;
+            $sql = "SELECT nombre, descripcion, ubicacion, tic, numordenadores FROM " . TABLE_AULA;
             $resultset = $this->conn->query($sql);
             return $resultset;
         } catch (PDOException $e) {

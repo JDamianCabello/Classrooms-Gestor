@@ -28,8 +28,8 @@ else{
         echo "<tbody>";
         foreach ($listEstudiantes as $fila) {
             echo "<tr>";
-            echo "<td>".$fila['nombrecorto']."</td>";
-            echo "<td>".substr($fila['nombre'], 0, 50)."</td><td>".$fila['ubicacion']."</td>";
+            echo "<td>".$fila['nombre']."</td>";
+            echo "<td>".substr($fila['descripcion'], 0, 50)."</td><td>".$fila['ubicacion']."</td>";
 
             if($fila['tic'] == 0) {
                 echo "<td>";

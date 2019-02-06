@@ -43,4 +43,3 @@ if (!empty($_POST['register'])) {
 App::print_registerForm();
 
 App::print_footer();
-

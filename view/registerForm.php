@@ -9,7 +9,7 @@
 require('../core/Language.php');
 ?>
 
-<div class="register-form">
+<div class="baseStyleForm register-form">
     <img src="../assets/img/register.png" class="avatar">
     <h2><?php echo $register; ?></h2>
     <p><?php echo $register_msg; ?></p>

@@ -38,7 +38,11 @@ class App {
     }
 
     static function print_createClassForm(){
-        include('../view/anadirAula.php');
+        include('../view/anadirAulaForm.php');
+    }
+
+    static function print_reserveForm(){
+        include('../view/reservaForm.php');
     }
 
     function getDao() {
@@ -89,8 +93,12 @@ class App {
      * Métodos de gestión de aulas
      */
 
-    function insertAula($nomcorto, $nombreAula,$posicion,$estic,$pccount){
-        return $this->dao->insertAula($nomcorto, $nombreAula,$posicion,$estic,$pccount);
+    function insertAula($nombre, $descripcion,$posicion,$estic,$pccount){
+        return $this->dao->insertAula($nombre, $descripcion,$posicion,$estic,$pccount);
+    }
+
+    function deletetAula($nombre){
+        return $this->dao->deletetAula($nombre);
     }
 
     function getAulas(){
@@ -103,6 +111,10 @@ class App {
 
     function  insertUser($user,$name, $pass, $email, $date){
         return $this->dao->insertUser($user, $name, $pass, $email, $date);
+    }
+
+    function insertReserve($usuario, $aula, $fecha, $hora){
+        return $this->dao->insertReserve($usuario, $aula, $fecha, $hora);
     }
 
 

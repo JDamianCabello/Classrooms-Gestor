@@ -20,7 +20,7 @@
                 <?php echo $reservas; ?>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#"><?php echo $reservas_anadir; ?></a>
+                <a class="dropdown-item" href="../pages/reservaAula.php"><?php echo $reservas_anadir; ?></a>
                 <a class="dropdown-item" href="#"><?php echo $reservas_listar; ?></a>
             </div>
         </li>
@@ -31,7 +31,7 @@
                 <?php echo $aula; ?>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="../pages/anadirAulaForm.php"><?php echo $aula_anadir; ?></a>
+                <a class="dropdown-item" href="../pages/anadirAula.php"><?php echo $aula_anadir; ?></a>
                 <a class="dropdown-item" href="../pages/listarAulas.php"><?php echo $aula_listar; ?></a>
             </div>
         </li>

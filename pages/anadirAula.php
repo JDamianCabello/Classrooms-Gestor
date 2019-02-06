@@ -5,31 +5,26 @@ $app->validateSesion();
 App::print_head();
 App::printNav();
 
-
 if(!empty($_POST['addclass'])){
-    $descripcion = $_POST['description'];
     $nombre = $_POST['name'];
+    $descripcion = $_POST['description'];
     $posicion = $_POST['position'];
+    $_POST["estic"] = isset($_POST["estic"]) ? $_POST["estic"] : 0;
     $estic = $_POST['estic'];
     $pccount = $_POST['pccount'];
 
-    if($estic == on)
-        $estic = 1;
-    else{
-        $estic = 0;
+    if($estic == 0)
         $pccount = null;
-    }
+    elseif ($pccount == null)
+        $pccount = 0;
 
     $resultset = $app->insertAula($nombre, $descripcion,$posicion,$estic,$pccount);
-    var_dump($resultset);
-
 
     if(!$resultset == null)
-        echo "<div class=\"alert alert-success\" role=\"alert\">Aula añadida a la base de datos con éxito</div>";
+        echo "<div class=\"alert alert-success\" role=\"alert\"><p class=\"text-justify\">Aula añadida a la base de datos con éxito</p></div>";
     else
-        echo "<div class=\"alert alert-danger\" role=\"alert\">Error al insertar el aula :".$app->getDao()->error."</div>";
+        echo "<div class=\"alert alert-danger\" role=\"alert\"><p class=\"text-justify\">Error al insertar el aula :".$app->getDao()->error."</p></div>";
 }
-
 
 App::print_createClassForm();
 App::print_footer();

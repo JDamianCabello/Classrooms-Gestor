@@ -50,27 +50,39 @@ un usuario en MySQL con permisos para la ejecucción de comandos.
 	 - Traducida la cabecera de listar aulas.
 	 - Eliminado `view/head_noboostrap.php` no era necesario.
 	 - Implementado el campo admin de tipo TINYINT(1) en la tabla usuario.
+	 - Creado el form para añadir aulas.
+	 - Eliminado `anadirAulaBD.php` ahora se hace por POST hacia el mismo php.
+	 - En el listado de todas las aulas se muestran solo 50 caracteres en la descripción.
+	 - Añadido el archivo `pages/reservaAula.php`. 
+	 - Añadido el archivo `view/reservaForm.php`. 
+	 - Creada la tabla reserva en la BD.
+	 - Creados los estilos en ./assets/css/baseStyle.css `.baseStyleForm select` y `.baseStyleForm select:focus`
+	 - Posibilidad de reservar un aula.
+	 - Añadido el campo todo el día para evitar que se tenga que reservar el mismo aula 6 veces en la misma fecha.
 
-	
+
+
 
 ## TODO
 
  - [x] Hacer el registro funcional.
  - [ ] Hacer jerarquía de privilegios al sistema. Ya implementao en BD
  
-|ADMIN     |USER     |
-|----------|---------|
+|ADMIN|USER  |
+|--|--|
 | true (1) |false (0)|
 
  - [ ] ¿Posible refactorización del navbar?
  - [x] Migrar el proyecto a mi dominio para ver un ejemplo online.
  - [ ] Posibilidad de buscar aulas.
- - [ ] Posibilidad de reservar aulas (en sus seis tramos)
+ - [x] Posibilidad de reservar aulas (en sus seis tramos)
  - [ ] Editar aulas ya creadas.
  - [ ] Deshabilitar aulas del sistema.
  - [ ] Consultar reservas de aulas.
- - [ ] Crear un form de creación de aulas.
+ - [x] Crear un form de creación de aulas.
  - [ ] Añadir el nombre del usuario al navbar
  - [ ] Añadir pestaña settings.
  - [ ] Comentar el codigo.
+ - [ ] Hacer un A cerca de "normal".
  - [ ] AL ACABAR: ¿Refactorizar?.
+
