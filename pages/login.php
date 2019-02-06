@@ -32,8 +32,6 @@ if (!empty($_POST['register'])) {
     $email = $_POST["email"];
     $date = $_POST['date'];
 
-    if($date == "0000-00-00")
-        exit();
     $app = new App();
     if($app->getDao()->insertUser($user,$name, $pass,$email, $date)){
         $app -> saveSession($user);

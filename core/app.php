@@ -17,11 +17,6 @@ class App {
         include('../view/cabezeraListarAulas.php');
     }
 
-    static function print_listAulas_Buttons()
-    {
-        include('../view/listarAulas_buttons.php');
-    }
-
     static function printNav(){
         include('../view/mainnav.php');
     }
@@ -80,6 +75,7 @@ class App {
     }
 
     function invalidateSession(){
+        session_start();
         if($this->isLogged()){
             unset($_SESSION['user']);
             session_destroy();
@@ -108,6 +104,8 @@ class App {
     function  insertUser($user,$name, $pass, $email, $date){
         return $this->dao->insertUser($user, $name, $pass, $email, $date);
     }
+
+
 
 
 }
