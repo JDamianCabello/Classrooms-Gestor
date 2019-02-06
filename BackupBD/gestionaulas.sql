@@ -1,14 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 04-02-2019 a las 13:56:42
--- Versión del servidor: 5.7.24-0ubuntu0.18.04.1
--- Versión de PHP: 7.2.10-0ubuntu0.18.04.1
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 06-02-2019 a las 21:07:47
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.3.0
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,99 +29,78 @@ USE `gestionaulas`;
 --
 -- Estructura de tabla para la tabla `aula`
 --
--- Creación: 25-01-2019 a las 11:22:44
--- Última actualización: 04-02-2019 a las 11:22:34
---
 
-DROP TABLE IF EXISTS `aula`;
 CREATE TABLE IF NOT EXISTS `aula` (
-  `nombrecorto` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `nombre` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `nombre` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `descripcion` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `ubicacion` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `tic` tinyint(4) NOT NULL DEFAULT '0',
-  `numordenadores` int(11) DEFAULT NULL,
-  PRIMARY KEY (`nombrecorto`)
+  `numordenadores` int(11) UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (`nombre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELACIONES PARA LA TABLA `aula`:
---
 
 --
 -- Volcado de datos para la tabla `aula`
 --
 
-INSERT INTO `aula` (`nombrecorto`, `nombre`, `ubicacion`, `tic`, `numordenadores`) VALUES('primera', 'primera', 'primera', 0, 0);
-INSERT INTO `aula` (`nombrecorto`, `nombre`, `ubicacion`, `tic`, `numordenadores`) VALUES('segunda', 'segunda', 'segunda', 1, 20);
+INSERT INTO `aula` (`nombre`, `descripcion`, `ubicacion`, `tic`, `numordenadores`) VALUES('primera', 'primera', 'primera', 0, 0);
+INSERT INTO `aula` (`nombre`, `descripcion`, `ubicacion`, `tic`, `numordenadores`) VALUES('segunda', 'segunda', 'segunda', 1, 20);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `login`
---
--- Creación: 25-01-2019 a las 11:40:10
+-- Estructura de tabla para la tabla `reserva`
 --
 
-DROP TABLE IF EXISTS `login`;
-CREATE TABLE IF NOT EXISTS `login` (
-  `usuario` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `contrasenia` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  PRIMARY KEY (`usuario`,`contrasenia`),
-  KEY `login_usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='existe el usuario usuario para loguearse al sistema';
+CREATE TABLE IF NOT EXISTS `reserva` (
+  `usuario` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `aula` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `tramo` enum('8:15','9:15','10:15','11:45','12:45','13:45','all') COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`usuario`,`aula`,`fecha`,`tramo`),
+  KEY `reserva_usuario` (`aula`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELACIONES PARA LA TABLA `login`:
---   `id_usuario`
---       `usuario` -> `id`
+-- Volcado de datos para la tabla `reserva`
 --
 
---
--- Volcado de datos para la tabla `login`
---
-
-INSERT INTO `login` (`usuario`, `contrasenia`, `id_usuario`) VALUES('usuario', 'd9e94fd2b4c5522e5bb7996aa4df48a3f6b8f1b0c3e7fadb5fcc724e3ab6d85dc401b0a2789fe56c209b80e86102b218ff74ff8614f315599a180691846138b6', -1);
+INSERT INTO `reserva` (`usuario`, `aula`, `fecha`, `tramo`) VALUES('usuario', 'primera', '2019-02-04', '8:15');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuario`
 --
--- Creación: 28-01-2019 a las 09:50:47
---
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `nombre` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `fnac` date NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
+  `usuario` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`usuario`) USING BTREE,
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELACIONES PARA LA TABLA `usuario`:
---
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`nombre`, `fnac`, `email`, `id`, `admin`) VALUES('GOD USER', '0000-01-01', ' ', -1, 0);
+INSERT INTO `usuario` (`nombre`, `fnac`, `email`, `admin`, `usuario`, `password`) VALUES('GOD USER', '0000-00-00', ' god@godmodeon.god', 1, 'usuario', 'd9e94fd2b4c5522e5bb7996aa4df48a3f6b8f1b0c3e7fadb5fcc724e3ab6d85dc401b0a2789fe56c209b80e86102b218ff74ff8614f315599a180691846138b6');
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `login`
+-- Filtros para la tabla `reserva`
 --
-ALTER TABLE `login`
-  ADD CONSTRAINT `login_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON UPDATE CASCADE;
-SET FOREIGN_KEY_CHECKS=1;
+ALTER TABLE `reserva`
+  ADD CONSTRAINT `reserva_aula` FOREIGN KEY (`aula`) REFERENCES `aula` (`nombre`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `reserva_usuario` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`usuario`) ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
