@@ -2,8 +2,8 @@
 
 define('DATABASE', 'gestionaulas');
 define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
+define('USER', 'www-data');
+define('PASS', 'usuario');
 
 define('DSN', "mysql:host=" . HOST . ";dbname=" . DATABASE);
 
@@ -126,14 +126,27 @@ class Dao
         }
     }
 
-
-    function getID($user)
+    function getReservas()
     {
         try {
-            $sql = "SELECT id FROM " . TABLE_USER . " WHERE usuario = '" . $user . "'";
+            if($_SESSION['admin'])
+                $sql = "SELECT nombre, r.usuario, aula, fecha, tramo FROM ".TABLE_RESERVE." r,".TABLE_USER." u where r.usuario = u.usuario";
+            else
+                $sql = "SELECT  aula, fecha, tramo FROM ".TABLE_RESERVE." WHERE usuario = '".$_SESSION['user']."'";
             $resultset = $this->conn->query($sql);
-            $listEstudiantes=$resultset->fetchAll();
 
+            return $resultset;
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+        }
+    }
+
+    function getUserPrivileges()
+    {
+        try {
+            $sql = "SELECT admin FROM " . TABLE_USER . " WHERE usuario = '" . $_SESSION['user']."'";
+            $resultset = $this->conn->query($sql);
+            return $resultset->fetch()['admin'];
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }

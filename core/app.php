@@ -51,8 +51,12 @@ class App {
 
     function saveSession($user){
         $_SESSION['user'] = $user;
+        $_SESSION['admin']= $this->dao->getUserPrivileges();
     }
 
+    function getReservas(){
+        return $this->dao->getReservas();
+    }
 
     function validateSesion(){
         session_start();

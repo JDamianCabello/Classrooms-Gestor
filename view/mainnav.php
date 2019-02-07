@@ -21,7 +21,7 @@
             </a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="../pages/reservaAula.php"><?php echo $reservas_anadir; ?></a>
-                <a class="dropdown-item" href="#"><?php echo $reservas_listar; ?></a>
+                <a class="dropdown-item" href="../pages/listReservas.php"><?php echo $reservas_listar; ?></a>
             </div>
         </li>
 

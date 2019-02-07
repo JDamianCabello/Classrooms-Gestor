@@ -5,7 +5,7 @@ include_once("../core/app.php");
 $app = new App();
 $app->validateSesion();
 
-App::print_head("Listado de aulas");
+App::print_head();
 App::printNav();
 $resultset = $app->getAulas();
 //1 Error en la BD

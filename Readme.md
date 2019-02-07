@@ -59,6 +59,13 @@ un usuario en MySQL con permisos para la ejecucción de comandos.
 	 - Creados los estilos en ./assets/css/baseStyle.css `.baseStyleForm select` y `.baseStyleForm select:focus`
 	 - Posibilidad de reservar un aula.
 	 - Añadido el campo todo el día para evitar que se tenga que reservar el mismo aula 6 veces en la misma fecha.
+ -0.7
+     - Creado el archivo `pages/listReservas.php`.
+     - Recogido el tipo de usuario desde la DB (administrador o user) mediante una llamada a `usuario.admin`.
+     - Añadida distinta vista segun el rango del usuario.
+        - Si es un administrador muestra TODAS las reservas, si es un usuario normal, muestra SOLO SUS reservas.
+     - Refactorizados los estilos para hacer el footer dinámico. 
+
 
 
 
@@ -66,7 +73,7 @@ un usuario en MySQL con permisos para la ejecucción de comandos.
 ## TODO
 
  - [x] Hacer el registro funcional.
- - [ ] Hacer jerarquía de privilegios al sistema. Ya implementao en BD
+ - [x] Hacer jerarquía de privilegios al sistema. Ya implementao en BD
  
 |ADMIN|USER  |
 |--|--|
@@ -78,11 +85,12 @@ un usuario en MySQL con permisos para la ejecucción de comandos.
  - [x] Posibilidad de reservar aulas (en sus seis tramos)
  - [ ] Editar aulas ya creadas.
  - [ ] Deshabilitar aulas del sistema.
- - [ ] Consultar reservas de aulas.
+ - [x] Consultar reservas de aulas.
  - [x] Crear un form de creación de aulas.
  - [ ] Añadir el nombre del usuario al navbar
  - [ ] Añadir pestaña settings.
  - [ ] Comentar el codigo.
  - [ ] Hacer un A cerca de "normal".
+ - [ ] Cambiar la imagen por un patrón.
  - [ ] AL ACABAR: ¿Refactorizar?.
 

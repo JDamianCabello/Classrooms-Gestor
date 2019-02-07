@@ -11,6 +11,7 @@ if(!empty($_POST['reserveclass'])){
     $hora = $_POST['hora'];
     $fecha = $_POST['fecha'];
     $aula = $_POST['aula'];
+    $aula = $_POST['motivo'];
 
     $resultset = $app->insertReserve($_SESSION['user'],$aula,$fecha,$hora);
 

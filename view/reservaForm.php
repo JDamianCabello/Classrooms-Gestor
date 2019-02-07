@@ -40,6 +40,28 @@ require ('../core/Language.php');
             <option value="13:45">6ª hora [13:45-14:45]</option>
             <option value="all">Todo el dia</option>
         </select>
+        <p>Motivo</p>
+        <div class="row">
+            <div class="col-sm-2">
+                <input onchange="showMe('othermsg')" name="othermsg" value="1" type="checkbox">
+            </div>
+            <div id="othermsg" class="col-sm" style="display: none">
+                <input type="text" name="pccount" placeholder="Indique el motivo a continuación">
+            </div>
+            <script type="text/javascript">
+                <!--
+                function showMe (box) {
+                    var chboxs = document.getElementById("othermsg").style.display;
+                    var vis = "none";
+                    if(chboxs=="none"){
+                        vis = "block"; }
+                    if(chboxs=="block"){
+                        vis = "none"; }
+                    document.getElementById(box).style.display = vis;
+                }
+                //-->
+            </script>
+        </div>
 
         <input type="submit" name="reserveclass" value="<?php echo $send_button_content; ?>">
     </form>
