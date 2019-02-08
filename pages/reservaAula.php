@@ -18,7 +18,6 @@ if(!empty($_POST['reserveclass'])){
             $motivo = $_POST['mimotivo'];
     else
         $motivo = $_POST['motivo'];
-    var_dump($_POST['mimotivo']);
 
     $resultset = $app->insertReserve($_SESSION['user'],$aula,$fecha,$hora,$motivo);
 

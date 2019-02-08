@@ -46,6 +46,7 @@
                 <a class="dropdown-item" href="#"><?php echo $administraaula_op2; ?></a>
                 <a class="dropdown-item" href="#"><?php echo $administraaula_op3; ?></a>
             </div>
+        </li>
 
         <!-- Dropdown cambiar idioma -->
         <li class="nav-item dropdown">

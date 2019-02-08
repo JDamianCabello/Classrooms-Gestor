@@ -2,8 +2,8 @@
 
 define('DATABASE', 'gestionaulas');
 define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
+define('USER', 'www-data');
+define('PASS', 'usuario');
 
 define('DSN', "mysql:host=" . HOST . ";dbname=" . DATABASE);
 

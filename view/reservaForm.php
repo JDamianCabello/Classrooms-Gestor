@@ -64,6 +64,6 @@ require ('../core/Language.php');
                 }
             }
         </script>
-        <input type="submit" name="reserveclass" value="<?php echo $send_button_content; ?>">
+        <input type="submit" name="reserveclass" value="<?php echo $send_button_content; ?>" onclick="return confirm( '¿Confirmas la reserva?');">
     </form>
 </div>

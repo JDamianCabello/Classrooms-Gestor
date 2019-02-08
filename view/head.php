@@ -22,3 +22,4 @@ require ('../core/Language.php');
     <body >
         <header >
         </header >
+        <div class="content">

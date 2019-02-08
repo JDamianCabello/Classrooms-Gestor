@@ -22,7 +22,8 @@ class App {
     }
 
     static function printNav(){
-        include('../view/mainnav.php');
+        //include('../view/mainnav.php');
+        include('../view/hamburguernav.php');
     }
 
     static function printExternalNav(){
