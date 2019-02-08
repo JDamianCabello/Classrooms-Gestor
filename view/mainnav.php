@@ -42,7 +42,7 @@
                 <?php echo $administraaula; ?>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#"><?php echo $administraaula_op1; ?></a>
+                <a class="dropdown-item" href="../pages/lobby2.php"><?php echo $administraaula_op1; ?></a>
                 <a class="dropdown-item" href="#"><?php echo $administraaula_op2; ?></a>
                 <a class="dropdown-item" href="#"><?php echo $administraaula_op3; ?></a>
             </div>

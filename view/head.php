@@ -5,7 +5,6 @@
  * Date: 31/01/2019
  * Time: 0:13
  */
-
 require ('../core/Language.php');
 ?>
 

@@ -12,9 +12,7 @@ if (!empty($_POST['login'])) {
     $user = $_POST["login_user"];
     $pass = $_POST["login_password"];
 
-    $app = new App();
     if (!$app->getDao()->isConected()) {
-        var_dump($app);
         echo "<p>".$app->getDao()->error."</p>";
     } else {
         if ($app->getDao()->authenticate($user, $pass)) {
@@ -32,7 +30,6 @@ if (!empty($_POST['register'])) {
     $email = $_POST["email"];
     $date = $_POST['date'];
 
-    $app = new App();
     if($app->getDao()->insertUser($user,$name, $pass,$email, $date)){
         $app -> saveSession($user);
         header("Location: lobby.php");

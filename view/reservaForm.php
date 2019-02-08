@@ -13,7 +13,7 @@ require ('../core/Language.php');
 ?>
 
 
-<div class="baseStyleForm reserveAula">
+<div id="register" class="baseStyleForm reserveAula">
     <form method="post">
         <p>Elige el aula [las tic´s muestran un ordenador]</p>
         <select name="aula" required>
@@ -40,29 +40,30 @@ require ('../core/Language.php');
             <option value="13:45">6ª hora [13:45-14:45]</option>
             <option value="all">Todo el dia</option>
         </select>
-        <p>Motivo</p>
-        <div class="row">
-            <div class="col-sm-2">
-                <input onchange="showMe('othermsg')" name="othermsg" value="1" type="checkbox">
-            </div>
-            <div id="othermsg" class="col-sm" style="display: none">
-                <input type="text" name="pccount" placeholder="Indique el motivo a continuación">
-            </div>
-            <script type="text/javascript">
-                <!--
-                function showMe (box) {
-                    var chboxs = document.getElementById("othermsg").style.display;
-                    var vis = "none";
-                    if(chboxs=="none"){
-                        vis = "block"; }
-                    if(chboxs=="block"){
-                        vis = "none"; }
-                    document.getElementById(box).style.display = vis;
-                }
-                //-->
-            </script>
+        <p>Motivo reserva</p>
+        <select id="mySelect" name="motivo" required onchange="if (this.selectedIndex) myFunction()";>
+            <option value="">Seleccione un motivo</option>
+            <option value="Necesito usar ordenadores." >Necesito usar ordenadores.</option>
+            <option value="Necesito el aula para realizar una actividad." >Necesito el aula para realizar una actividad.</option>
+            <option value="Haré un examen de tipo test online." >Haré un examen de tipo test online.</option>
+            <option value="Necesito algún recurso de este aula." >Necesito algún recurso de este aula.</option>
+            <option value="otro" >Otro.</option>
+        </select>
+        <div id="othermsg"  style="display: none">
+            <textarea name="mimotivo" cols="40" rows="5" placeholder="Indique aquí su motivo de reserva."></textarea>
         </div>
-
+        <script type="text/javascript">
+            function myFunction() {
+                var x = document.getElementById("mySelect").value;
+                if (x == "otro") {
+                    document.getElementById("othermsg").style.display = "block";
+                    document.getElementById('register').style.height='560px';
+                } else {
+                    document.getElementById("othermsg").style.display = "none";
+                    document.getElementById('register').style.height='435px';
+                }
+            }
+        </script>
         <input type="submit" name="reserveclass" value="<?php echo $send_button_content; ?>">
     </form>
 </div>

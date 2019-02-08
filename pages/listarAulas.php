@@ -6,9 +6,10 @@ $app = new App();
 $app->validateSesion();
 
 App::print_head();
-App::printNav();
+App::print_hamburguer();
 $resultset = $app->getAulas();
 //1 Error en la BD
+echo "<div class=\"content\">";
 if(!$resultset)
     echo "<p> Error al conectar al servidor: ".$app->getDao()->error."</p>";
 
@@ -51,5 +52,5 @@ else{
         echo "</table>";
     }
 }
-
+echo '</div>';
 App::print_footer();

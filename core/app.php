@@ -17,6 +17,10 @@ class App {
         include('../view/cabezeraListarAulas.php');
     }
 
+    static function print_hamburguer() {
+        include('../view/hamburguernav.php');
+    }
+
     static function printNav(){
         include('../view/mainnav.php');
     }
@@ -117,8 +121,8 @@ class App {
         return $this->dao->insertUser($user, $name, $pass, $email, $date);
     }
 
-    function insertReserve($usuario, $aula, $fecha, $hora){
-        return $this->dao->insertReserve($usuario, $aula, $fecha, $hora);
+    function insertReserve($usuario, $aula, $fecha, $hora, $motivo){
+        return $this->dao->insertReserve($usuario, $aula, $fecha, $hora, $motivo);
     }
 
 

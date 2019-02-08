@@ -7,8 +7,10 @@
 }
 
 *{
+  font-family: "IBM-PlexSans";
   margin: 0px;
   padding: 0px;
+  box-sizing:border-box;
 }
 
 html {
@@ -17,19 +19,25 @@ html {
     -o-background-size: cover;
     background-size: cover;
     position: relative;
-    font-family: "IBM-PlexSans";
+
     min-height: 100%;
-    background: url("../img/login_background.jpg") no-repeat center center;
+    background: url("../img/login_background.jpg") fixed center center;
 }
 
 body{
     margin-bottom: 60px;
     background: transparent;
+    transition:all 300ms linear;
   }
+
+html, body {
+    height: 100%;
+}
 
 .container {
   height: 50px;
   position: relative;
+    width: 100%;
 }
 
 .center {
@@ -46,14 +54,14 @@ pre {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    height: 60px;
+    height: 50px;
     width: 100%;
     background-color:#343a40;
     color: white;
     text-align: center;
-    padding: 5px;
+    transition:all 300ms linear;
 }
 footer a{
     font-size: x-large;
@@ -85,7 +93,7 @@ nav {
 }
 
 .baseStyleForm p{
-    margin: 0;
+    margin-bottom: 10px;
     padding: 0;
     font-weight: bold;
     color: white;
@@ -93,7 +101,7 @@ nav {
 
 .baseStyleForm input{
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .baseStyleForm input[type=text], .baseStyleForm input[type=email], .baseStyleForm input[type=password], .baseStyleForm input[type=date]{
@@ -139,6 +147,12 @@ nav {
     margin-top: 5%;
 }
 
+.baseStyleForm textarea{
+    resize: none;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+}
+
 .register-form{
     width: 400px;
     height: 500px;
@@ -149,7 +163,7 @@ nav {
 
 .registerAula{
     width: 500px;
-    height: 430px;
+    height: 460px;
     top: 50%;
     left: 50%;
     padding: 40px;
@@ -157,7 +171,7 @@ nav {
 
 .reserveAula{
     width: 500px;
-    height: 350px;
+    height: 435px;
     top: 50%;
     left: 50%;
     padding: 60px;
@@ -179,5 +193,46 @@ nav {
     left: calc(50% - 30px);
 }
 
+#sidebar {
+    position:absolute;
+    top:0px;
+    left:-200px;
+    width:200px;
+    height:100%;
+    /*background:#151719;*/
+    background: rgba(0,0,0,0.6);
+    transition:all 300ms linear;
+}
+#sidebar .toggle-btn {
+    position:absolute;
+    left:220px;
+    top:10px;
+}
+#sidebar .toggle-btn span {
+    display:block;
+    width:30px;
+    height:5px;
+    background:#151719;
+    margin:5px 0px;
+    cursor:pointer;
+}
+#sidebar div.list div.item {
+    padding:15px 10px;
+    border-bottom:1px solid #444;
+    color:#fcfcfc;
+    text-transform:uppercase;
+    font-size:15px;
+}
+body.sidebar-active {
+    padding-left:200px;
+}
+body.sidebar-active #sidebar {
+    left:0px;
 
+}
+
+.content {
+    padding:10px;
+    margin-top:60px;
+}
 

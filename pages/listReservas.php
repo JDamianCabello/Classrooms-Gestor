@@ -15,8 +15,12 @@ if(!$resultset)
 else{
     $reservasArray=$resultset->fetchAll();
     //2.1 Si no hay elementos
+
     if(count($reservasArray)==0)
-        echo "<div class=\"alert alert-info\" role=\"alert\"><p class=\"text-justify\">Usted no tiene ningún aula reservada</p></div>";
+        if($_SESSION['admin'])
+            echo "<div class=\"alert alert-info\" role=\"alert\"><p class=\"text-justify\">Ningún usuario reservó un aula</p></div>";
+        else
+            echo "<div class=\"alert alert-info\" role=\"alert\"><p class=\"text-justify\">Usted no tiene ningún aula reservada</p></div>";
     //2.2 Si hay alumnos
     else{
         echo "<table class='table'>";
@@ -34,7 +38,7 @@ else{
             echo "<tr>";
             if($_SESSION['admin'])
                 echo "<td>".$fila['nombre']."</td><td>".$fila['usuario']."</td>";
-            echo "<td>".$fila['aula']."</td><td>".$fila['fecha']."</td><td>".$fila['tramo']."<td>";
+            echo "<td>".$fila['aula']."</td><td>".$fila['fecha']."</td><td>".$fila['tramo']."</td><td>".$fila['motivo']."</td>";
             echo "</tr>";
         }
         echo "</tbody>";

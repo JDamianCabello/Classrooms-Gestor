@@ -2,8 +2,8 @@
 
 define('DATABASE', 'gestionaulas');
 define('HOST', 'localhost');
-define('USER', 'www-data');
-define('PASS', 'usuario');
+define('USER', 'root');
+define('PASS', '');
 
 define('DSN', "mysql:host=" . HOST . ";dbname=" . DATABASE);
 
@@ -91,7 +91,7 @@ class Dao
         }
     }
 
-    function  insertReserve($usuario, $aula, $fecha, $hora){
+    function  insertReserve($usuario, $aula, $fecha, $hora, $motivo){
         try {
             if($hora == 'all'){
                 $sql = "SELECT * FROM ".TABLE_RESERVE." WHERE aula = '".$aula."' AND fecha = '".$fecha."'";
@@ -101,10 +101,10 @@ class Dao
                     return false;
                 }
                 else
-                    $sql = "INSERT INTO ".TABLE_RESERVE. "(usuario, aula, fecha, tramo) VALUES ('".$usuario."','".$aula."','".$fecha."','8:15'),('".$usuario."','".$aula."','".$fecha."','9:15'),('".$usuario."','".$aula."','".$fecha."','10:15'),('".$usuario."','".$aula."','".$fecha."','11:45'),('".$usuario."','".$aula."','".$fecha."','12:45'),('".$usuario."','".$aula."','".$fecha."','13:45')";
+                    $sql = "INSERT INTO ".TABLE_RESERVE. "(usuario, aula, fecha, tramo, motivo) VALUES ('".$usuario."','".$aula."','".$fecha."','8:15','".$motivo."'),('".$usuario."','".$aula."','".$fecha."','9:15','".$motivo."'),('".$usuario."','".$aula."','".$fecha."','10:15','".$motivo."'),('".$usuario."','".$aula."','".$fecha."','11:45','".$motivo."'),('".$usuario."','".$aula."','".$fecha."','12:45','".$motivo."'),('".$usuario."','".$aula."','".$fecha."','13:45','".$motivo."')";
             }
             else
-                $sql = "INSERT INTO ".TABLE_RESERVE. "(usuario, aula, fecha, tramo) VALUES ('".$usuario."','".$aula."','".$fecha."','".$hora."')";
+                $sql = "INSERT INTO ".TABLE_RESERVE. "(usuario, aula, fecha, tramo, motivo) VALUES ('".$usuario."','".$aula."','".$fecha."','".$hora."','".$motivo."')";
             if ($this->conn->exec($sql) === false){
                 return false;
             }else {
@@ -130,9 +130,9 @@ class Dao
     {
         try {
             if($_SESSION['admin'])
-                $sql = "SELECT nombre, r.usuario, aula, fecha, tramo FROM ".TABLE_RESERVE." r,".TABLE_USER." u where r.usuario = u.usuario";
+                $sql = "SELECT nombre, r.usuario, aula, fecha, tramo, motivo FROM ".TABLE_RESERVE." r,".TABLE_USER." u where r.usuario = u.usuario";
             else
-                $sql = "SELECT  aula, fecha, tramo FROM ".TABLE_RESERVE." WHERE usuario = '".$_SESSION['user']."'";
+                $sql = "SELECT  aula, fecha, tramo, motivo FROM ".TABLE_RESERVE." WHERE usuario = '".$_SESSION['user']."'";
             $resultset = $this->conn->query($sql);
 
             return $resultset;
