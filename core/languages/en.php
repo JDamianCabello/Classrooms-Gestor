@@ -63,6 +63,7 @@ $user_name          = "Username";
 $user_password      = "Password";
 $acess              = "Sign in";
 $register           = "Sign up";
+$creadoPor          = "Created by:";
 
 
 

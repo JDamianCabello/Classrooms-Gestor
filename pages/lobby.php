@@ -6,7 +6,7 @@ $app = new App();
 
 App::print_head();
 
-App::printNav();
+App::print_hamburguer();
 $app->validateSesion();
 
 App::print_footer();

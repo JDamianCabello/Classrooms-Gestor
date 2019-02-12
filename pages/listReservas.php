@@ -6,7 +6,18 @@ $app->validateSesion();
 App::print_head();
 App::printNav();
 
+if (!empty($_POST['borrarreserva'])) {
+    $user = $_POST["borrarreserva"];
+
+    if (!$app->getDao()->deshabilitarClase($user))
+        echo "<p>".$app->getDao()->error."</p>";
+    else
+        App::refreshPage();
+
+}
+
 $resultset = $app->getReservas();
+echo '<div class="content">';
 //1 Error en la BD
 if(!$resultset)
     echo "<p> Error al conectar al servidor: ".$app->getDao()->error."</p>";
@@ -39,11 +50,12 @@ else{
             if($_SESSION['admin'])
                 echo "<td>".$fila['nombre']."</td><td>".$fila['usuario']."</td>";
             echo "<td>".$fila['aula']."</td><td>".$fila['fecha']."</td><td>".$fila['tramo']."</td><td>".$fila['motivo']."</td>";
+            echo '<td><button type="submit" class="btn btn-danger" name="borrarreserva" value='.$fila['nombre'].' onclick="return confirm(\'¿Seguro que quieres eliminar la reserva del aula '.$fila['nombre'].' el día '.$fila['fecha'].'?\');">Borrar Reserva</button></td>';
             echo "</tr>";
         }
         echo "</tbody>";
         echo "</table>";
     }
 }
-
+echo '<\div>';
 App::print_footer();

@@ -42,6 +42,10 @@ class App {
         include('../view/registerForm.php');
     }
 
+    static function print_signature(){
+        include('../view/signature.php');
+    }
+
     static function print_createClassForm(){
         include('../view/anadirAulaForm.php');
     }
@@ -96,6 +100,10 @@ class App {
         }
     }
 
+    function refreshPage(){
+        echo "<meta http-equiv='refresh' content='0'>";
+    }
+
 
 
     /**
@@ -126,6 +134,13 @@ class App {
         return $this->dao->insertReserve($usuario, $aula, $fecha, $hora, $motivo);
     }
 
+    function habilitarClase($nombre){
+        return $this->dao->habilitarClase($nombre);
+    }
+
+    function deshabilitarClase($nombre){
+        return $this->dao->deshabilitarClase($nombre);
+    }
 
 
 

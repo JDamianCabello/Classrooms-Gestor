@@ -8,8 +8,42 @@ $app->validateSesion();
 App::print_head();
 App::print_hamburguer();
 $resultset = $app->getAulas();
-//1 Error en la BD
 
+if (!empty($_POST['habilitaclass'])) {
+    $user = $_POST["habilitaclass"];
+
+    if (!$app->getDao()->habilitarClase($user))
+        echo "<p>".$app->getDao()->error."</p>";
+    else
+        App::refreshPage();
+
+}
+
+if (!empty($_POST['deshabilitaclass'])) {
+    $user = $_POST["deshabilitaclass"];
+
+    if (!$app->getDao()->deshabilitarClase($user))
+        echo "<p>".$app->getDao()->error."</p>";
+    else
+        App::refreshPage();
+
+}
+
+if (!empty($_POST['borrarclass'])) {
+    $user = $_POST["borrarclass"];
+
+    if (!$app->getDao()->deletetAula($user))
+        echo "<p>".$app->getDao()->error."</p>";
+    else
+        App::refreshPage();
+
+}
+
+
+
+
+//1 Error en la BD
+echo '<div class="content">';
 if(!$resultset)
     echo "<p> Error al conectar al servidor: ".$app->getDao()->error."</p>";
 
@@ -28,7 +62,11 @@ else{
 
         echo "<tbody>";
         foreach ($listEstudiantes as $fila) {
-            echo "<tr>";
+            if($fila['deshabilitada'])
+                echo '<tr style=\'color:red;\'>';
+            else
+                echo "<tr>";
+
             echo "<td>".$fila['nombre']."</td>";
             echo "<td>".substr($fila['descripcion'], 0, 50)."</td><td>".$fila['ubicacion']."</td>";
 
@@ -42,10 +80,27 @@ else{
                 echo 'SI';
                 echo "</td><td>".$fila['numordenadores']."</td>";
             }
-
-            echo "<td><a href=\"#\" class=\"btn btn-secondary\" role=\"button\">Reservar aula</a></td>";
+            echo '<form method="post">';
+            if(!$fila['deshabilitada']) {
+                echo '<td><button type=\"submit\" class="btn btn-success" name="reserveclass" value="';
+                echo $fila["nombre"];
+                echo '" onclick="return confirm( "¿Confirmas la reserva?");">Reservar aula</button></td>';
+                //echo "<td><a href=\"#\" class=\"btn btn-success\" role=\"button\">Reservar aula</a></td>";
+            }
+            else {
+                echo "<td><button type=\"submit\" class='btn btn-secondary' name=\"reserveclass\" value=\"\" onclick=\"return false;\">Reservar aula</button></td>";
+                //echo "<td><a href=\"#\" class=\"btn btn-secondary\" role=\"button\ onclick=\"return false;\">Reservar aula</a></td>";
+            }
+            echo '<td><button type="submit" class="btn btn-danger" name="borrarclass" value='.$fila['nombre'].' onclick="return confirm(\'¿Seguro que quieres BORRAR EL AULA '.strtoupper ($fila['nombre']).' PERMANENTEMENTE?\');">Borrar aula</button></td>';
             echo "<td><a href=\"#\" class=\"btn btn-info\" role=\"button\">Editar aula</a></td>";
-            echo "<td><a href=\"#\" class=\"btn btn-danger\" role=\"button\">Eliminar aula</a></td>";
+            //echo "<td><a href=\"#\" class=\"btn btn-danger\" role=\"button\">Eliminar aula</a></td>";
+            if($fila['deshabilitada'])
+                echo '<td><button type="submit" class="btn btn-dark" name="habilitaclass" value='.$fila['nombre'].' onclick="return confirm(\'¿Seguro que quieres habilitar el aula '.$fila['nombre'].'?\');">Habilitar aula</button></td>';
+
+            else
+                echo '<td><button type="submit" class="btn btn-dark" name="deshabilitaclass" value='.$fila['nombre'].' onclick="return confirm(\'¿Seguro que quieres deshabilitar el aula '.$fila['nombre'].'?\');">Deshabilitar aula</button></td>';
+
+            echo '</form>';
             echo "</tr>";
         }
         echo "</tbody>";

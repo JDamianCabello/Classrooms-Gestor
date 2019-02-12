@@ -38,5 +38,6 @@ if (!empty($_POST['register'])) {
 }
 
 App::print_registerForm();
+App::print_signature();
 
 App::print_footer();

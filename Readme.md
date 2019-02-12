@@ -1,4 +1,3 @@
-
 ## Gestor de clases.
 
 ```
@@ -59,38 +58,45 @@ un usuario en MySQL con permisos para la ejecucción de comandos.
 	 - Creados los estilos en ./assets/css/baseStyle.css `.baseStyleForm select` y `.baseStyleForm select:focus`
 	 - Posibilidad de reservar un aula.
 	 - Añadido el campo todo el día para evitar que se tenga que reservar el mismo aula 6 veces en la misma fecha.
- -0.7
-     - Creado el archivo `pages/listReservas.php`.
-     - Recogido el tipo de usuario desde la DB (administrador o user) mediante una llamada a `usuario.admin`.
-     - Añadida distinta vista segun el rango del usuario.
-        - Si es un administrador muestra TODAS las reservas, si es un usuario normal, muestra SOLO SUS reservas.
-     - Refactorizados los estilos para hacer el footer dinámico. 
-
-
-
-
-
-## TODO
-
- - [x] Hacer el registro funcional.
- - [x] Hacer jerarquía de privilegios al sistema. Ya implementao en BD
- 
-|ADMIN|USER  |
-|--|--|
-| true (1) |false (0)|
-
- - [ ] ¿Posible refactorización del navbar?
- - [x] Migrar el proyecto a mi dominio para ver un ejemplo online.
- - [ ] Posibilidad de buscar aulas.
- - [x] Posibilidad de reservar aulas (en sus seis tramos)
- - [ ] Editar aulas ya creadas.
- - [ ] Deshabilitar aulas del sistema.
- - [x] Consultar reservas de aulas.
- - [x] Crear un form de creación de aulas.
- - [ ] Añadir el nombre del usuario al navbar
- - [ ] Añadir pestaña settings.
- - [ ] Comentar el codigo.
- - [ ] Hacer un A cerca de "normal".
- - [ ] Cambiar la imagen por un patrón.
- - [ ] AL ACABAR: ¿Refactorizar?.
-
+  -0.7  
+    - Creado el archivo `pages/listReservas.php`.  
+    - Recogido el tipo de usuario desde la DB (administrador o user) mediante una llamada a `usuario.admin`.  
+    - Añadida distinta vista segun el rango del usuario.  
+        - Si es un administrador muestra TODAS las reservas, si es un usuario normal, muestra SOLO SUS reservas.  
+    - Refactorizados los estilos para hacer el footer dinámico.   
+    - Añadido el navbar V2.
+    - Añadido en la BD (tabla aula) el campo deshablitada.
+    - Las aulas deshabilitadas se muestran en reservar en rojo y deshabilitadas, y en el listado de aulas se muestra el boton "habilitar".
+    - Los botones "habilitar aula" y "deshabilitar aula"  son completamente funcionales.
+    - El botón borrar funciona correctamente.
+    - Agregada actualización de la base de datos.
+   
+   
+   
+   
+   
+ ## TODO  
+   
+  - [x] Hacer el registro funcional.  
+  - [x] Hacer jerarquía de privilegios al sistema. Ya implementado en la base de datos.
+    
+ |ADMIN|USER  |  
+ |--|--|  
+ | true (1) |false (0)|  
+   
+  - [x] ¿Posible refactorización del navbar?  
+  - [x] Migrar el proyecto a mi dominio para ver un ejemplo online.  
+  - [ ] Posibilidad de buscar aulas.  
+  - [x] Posibilidad de reservar aulas (en sus seis tramos)  
+  - [ ] Editar aulas ya creadas.  
+  - [x] Deshabilitar aulas del sistema.  
+  - [x] Consultar reservas de aulas.  
+  - [x] Crear un form de creación de aulas.  
+  - [ ] Añadir el nombre del usuario al navbar  
+  - [ ] Añadir pestaña settings.  
+  - [ ] Comentar el codigo.  
+  - [ ] Hacer un A cerca de "normal".  
+  - [ ] Cambiar la imagen por un patrón.  
+  - [ ] AL ACABAR: ¿Refactorizar?.
+  - [x] Añadir firma.
+  - [ ] El footer no es sticky.

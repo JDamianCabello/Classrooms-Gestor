@@ -9,7 +9,7 @@
  */
 require('../core/Language.php');
 ?>
-        </div>
+
         <footer class="fixed-bottom">
             <div>
                 <p class="center">

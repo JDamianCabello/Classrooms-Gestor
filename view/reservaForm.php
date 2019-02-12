@@ -17,9 +17,12 @@ require ('../core/Language.php');
     <form method="post">
         <p>Elige el aula [las tic´s muestran un ordenador]</p>
         <select name="aula" required>
+            <option value="volvo" disabled>Volvo</option>
             <?php
             foreach ($listaulas as $item) {
-                echo "<option value=".$item['nombre']."";
+                echo "<option value=".$item['nombre'];
+                if($item['deshabilitada'])
+                    echo " disabled";
                 if($item['tic'] == 1)
                     echo " class=\"fa\">&#xf5fc;     ";
                 else

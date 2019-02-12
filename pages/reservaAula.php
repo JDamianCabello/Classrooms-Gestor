@@ -5,7 +5,7 @@ $listaulas = $app->getAulas();
 $listaulas=$listaulas->fetchAll();
 $app->validateSesion();
 App::print_head();
-App::printNav();
+App::print_hamburguer();
 
 if(!empty($_POST['reserveclass'])){
     $hora = $_POST['hora'];
@@ -26,6 +26,7 @@ if(!empty($_POST['reserveclass'])){
     else
         echo "<div class=\"alert alert-danger\" role=\"alert\"><p class=\"text-justify\">Error al reservar el aula :".$app->getDao()->error."</p></div>";
 }
+
 
 App::print_reserveForm();
 App::print_footer();

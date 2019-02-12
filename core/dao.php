@@ -2,8 +2,8 @@
 
 define('DATABASE', 'gestionaulas');
 define('HOST', 'localhost');
-define('USER', 'www-data');
-define('PASS', 'usuario');
+define('USER', 'root');
+define('PASS', '');
 
 define('DSN', "mysql:host=" . HOST . ";dbname=" . DATABASE);
 
@@ -67,10 +67,21 @@ class Dao
         }
     }
 
+    function deletetreserva($nombre)
+    {
+        try {
+            $sql = "";
+            $resultset = $this->conn->query($sql);
+            return $resultset;
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+        }
+    }
+
     function deletetAula($nombre)
     {
         try {
-            $sql = "DELETE FROM ".TABLE_AULA." WHERE nombre =".$nombre;
+            $sql = "DELETE FROM ".TABLE_AULA." WHERE nombre ='".$nombre."'";
             $resultset = $this->conn->query($sql);
             return $resultset;
         } catch (PDOException $e) {
@@ -118,7 +129,7 @@ class Dao
     function getAulas()
     {
         try {
-            $sql = "SELECT nombre, descripcion, ubicacion, tic, numordenadores FROM " . TABLE_AULA;
+            $sql = "SELECT nombre, descripcion, ubicacion, tic, numordenadores, deshabilitada FROM " . TABLE_AULA;
             $resultset = $this->conn->query($sql);
             return $resultset;
         } catch (PDOException $e) {
@@ -147,6 +158,28 @@ class Dao
             $sql = "SELECT admin FROM " . TABLE_USER . " WHERE usuario = '" . $_SESSION['user']."'";
             $resultset = $this->conn->query($sql);
             return $resultset->fetch()['admin'];
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+        }
+    }
+
+    function deshabilitarClase($nombre)
+    {
+        try {
+            $sql = "UPDATE aula SET deshabilitada='1' WHERE nombre='".$nombre."'";
+            $resultset = $this->conn->query($sql);
+            return $resultset;
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+        }
+    }
+
+    function habilitarClase($nombre)
+    {
+        try {
+            $sql = "UPDATE aula SET deshabilitada='0' WHERE nombre='".$nombre."'";
+            $resultset = $this->conn->query($sql);
+            return $resultset;
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }
