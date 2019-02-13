@@ -271,6 +271,9 @@ body.sidebar-active #sidebar {
     margin-top:60px;
 }
 
+
+
+
 .handmadeBot{
     position: absolute;
     font-size: 35px;
@@ -279,7 +282,7 @@ body.sidebar-active #sidebar {
     -webkit-transform: rotate(-20deg); /* Safari */
     transform: rotate(-20deg);
     left: 80%;
-    bottom: 30%;
+    bottom: 25%;
 }
 
 .handmadeMid{

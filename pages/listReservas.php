@@ -7,12 +7,11 @@ App::print_head();
 App::printNav();
 
 if (!empty($_POST['borrarreserva'])) {
-    $user = $_POST["borrarreserva"];
-
-    if (!$app->getDao()->deshabilitarClase($user))
+    $nReserva = $_POST["borrarreserva"];
+    if (!$app->getDao()->deletetreserva($nReserva))
         echo "<p>".$app->getDao()->error."</p>";
-    else
-        App::refreshPage();
+    //else
+        //App::refreshPage();
 
 }
 
@@ -46,12 +45,15 @@ else{
         echo "</thead>";
         echo "<tbody>";
         foreach ($reservasArray as $fila) {
-            echo "<tr>";
+            echo "<tr><form method='post'>";
             if($_SESSION['admin'])
-                echo "<td>".$fila['nombre']."</td><td>".$fila['usuario']."</td>";
+                echo "<td>".$fila['nreserva']."</td><td>".$fila['nombre']."</td><td>".$fila['usuario']."</td>";
             echo "<td>".$fila['aula']."</td><td>".$fila['fecha']."</td><td>".$fila['tramo']."</td><td>".$fila['motivo']."</td>";
-            echo '<td><button type="submit" class="btn btn-danger" name="borrarreserva" value='.$fila['nombre'].' onclick="return confirm(\'¿Seguro que quieres eliminar la reserva del aula '.$fila['nombre'].' el día '.$fila['fecha'].'?\');">Borrar Reserva</button></td>';
-            echo "</tr>";
+            if($_SESSION['admin'])
+                echo '<td><button type="submit" class="btn btn-danger" name="borrarreserva" value='.$fila['nreserva'].' onclick="return confirm(\'¿Seguro que quieres eliminar la reserva del aula '.$fila['aula'].' el día '.$fila['fecha'].' al usuario '.$fila['nombre'].'?\');">Borrar Reserva</button></td>';
+            else
+                echo '<td><button type="submit" class="btn btn-danger" name="borrarreserva" value='.$fila['nreserva'].' onclick="return confirm(\'¿Seguro que quieres eliminar tu reserva del aula '.$fila['aula'].' el día '.$fila['fecha'].'?\');">Borrar Reserva</button></td>';
+            echo "</form></tr>";
         }
         echo "</tbody>";
         echo "</table>";

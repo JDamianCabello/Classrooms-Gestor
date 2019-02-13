@@ -58,19 +58,32 @@ un usuario en MySQL con permisos para la ejecucción de comandos.
 	 - Creados los estilos en ./assets/css/baseStyle.css `.baseStyleForm select` y `.baseStyleForm select:focus`
 	 - Posibilidad de reservar un aula.
 	 - Añadido el campo todo el día para evitar que se tenga que reservar el mismo aula 6 veces en la misma fecha.
-  -0.7  
-    - Creado el archivo `pages/listReservas.php`.  
-    - Recogido el tipo de usuario desde la DB (administrador o user) mediante una llamada a `usuario.admin`.  
-    - Añadida distinta vista segun el rango del usuario.  
+ -0.7  
+     - Creado el archivo `pages/listReservas.php`.  
+     - Recogido el tipo de usuario desde la DB (administrador o user) mediante una llamada a `usuario.admin`.  
+     - Añadida distinta vista segun el rango del usuario.  
         - Si es un administrador muestra TODAS las reservas, si es un usuario normal, muestra SOLO SUS reservas.  
-    - Refactorizados los estilos para hacer el footer dinámico.   
-    - Añadido el navbar V2.
-    - Añadido en la BD (tabla aula) el campo deshablitada.
-    - Las aulas deshabilitadas se muestran en reservar en rojo y deshabilitadas, y en el listado de aulas se muestra el boton "habilitar".
-    - Los botones "habilitar aula" y "deshabilitar aula"  son completamente funcionales.
-    - El botón borrar funciona correctamente.
-    - Agregada actualización de la base de datos.
-   
+     - Refactorizados los estilos para hacer el footer dinámico.   
+     - Añadido el navbar V2.
+     - Añadido en la BD (tabla aula) el campo deshablitada.
+     - Las aulas deshabilitadas se muestran en reservar en rojo y deshabilitadas, y en el listado de aulas se muestra el boton "habilitar".
+     - Los botones "habilitar aula" y "deshabilitar aula"  son completamente funcionales.
+     - El botón borrar funciona correctamente.
+     - Agregada actualización de la base de datos.
+## [0.8.0] - 2019-02-13
+### Changed
+-Añadido un nuevo campo `gestionaulas.nreserva` en la base de datos.
+
+### Added
+-Botón de borrar reserva.
+-Gestión de admin en listar reservas.
+
+  ### Removed
+-Contenido de `view/acercaDe.php` .
+
+### Fixed
+-Mensaje al administrador al borrar la reserva no mostraba el nombre del usuario, sino del aula, esto se ha arreglado.
+      
    
    
    
@@ -100,3 +113,4 @@ un usuario en MySQL con permisos para la ejecucción de comandos.
   - [ ] AL ACABAR: ¿Refactorizar?.
   - [x] Añadir firma.
   - [ ] El footer no es sticky.
+  - [ ] Corregir todo el log con buen formato (hasta la v[0.8.0]).

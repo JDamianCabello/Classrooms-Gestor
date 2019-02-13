@@ -67,11 +67,13 @@ class Dao
         }
     }
 
-    function deletetreserva($nombre)
+    function deletetreserva($numreserva)
     {
         try {
-            $sql = "";
+            $sql = "DELETE FROM ".TABLE_RESERVE." WHERE nreserva ='".$numreserva."'";
+            var_dump($sql);
             $resultset = $this->conn->query($sql);
+
             return $resultset;
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
@@ -141,7 +143,7 @@ class Dao
     {
         try {
             if($_SESSION['admin'])
-                $sql = "SELECT nombre, r.usuario, aula, fecha, tramo, motivo FROM ".TABLE_RESERVE." r,".TABLE_USER." u where r.usuario = u.usuario";
+                $sql = "SELECT nreserva, nombre, r.usuario, aula, fecha, tramo, motivo FROM ".TABLE_RESERVE." r,".TABLE_USER." u where r.usuario = u.usuario";
             else
                 $sql = "SELECT  aula, fecha, tramo, motivo FROM ".TABLE_RESERVE." WHERE usuario = '".$_SESSION['user']."'";
             $resultset = $this->conn->query($sql);

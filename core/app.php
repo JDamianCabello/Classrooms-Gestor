@@ -142,6 +142,10 @@ class App {
         return $this->dao->deshabilitarClase($nombre);
     }
 
+    function deletetreserva($numreserva){
+        return $this->dao->deletetreserva($numreserva);
+    }
+
 
 
 }
