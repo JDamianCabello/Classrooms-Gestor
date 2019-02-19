@@ -26,7 +26,7 @@ if (!empty($_POST['login'])) {
 if (!empty($_POST['register'])) {
     $user = $_POST["user"];
     $name = $_POST["name"];
-    $pass = $_POST["password"];
+    $pass = hash('sha256',$_POST["password"]);
     $email = $_POST["email"];
     $date = $_POST['date'];
 

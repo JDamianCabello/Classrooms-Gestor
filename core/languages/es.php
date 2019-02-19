@@ -21,12 +21,7 @@ $reservas_listar    = "Listar todas las reservas";
 $aula               = "Aulas";
 $aula_anadir        = "Añadir nueva aula";
 $aula_listar        = "Listar aulas";
-
-//Dropdown administar aulas
-$administraaula     = "Administrar aulas";
-$administraaula_op1 = "Opción 1";
-$administraaula_op2 = "Opción 2";
-$administraaula_op3 = "Opción 3";
+$aula_buscar        = "Buscar aula";
 
 //Dropdown idioma
 $cambiaidioma       = "Cambiar idioma";

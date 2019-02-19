@@ -10,29 +10,29 @@ App::print_hamburguer();
 $resultset = $app->getAulas();
 
 if (!empty($_POST['habilitaclass'])) {
-    $user = $_POST["habilitaclass"];
+    $clase = $_POST["habilitaclass"];
 
-    if (!$app->getDao()->habilitarClase($user))
+    if (!$app->getDao()->habilitarClase($clase))
         echo "<p>".$app->getDao()->error."</p>";
-    else
-        App::refreshPage();
+    //else
+        //App::refreshPage();
 
 }
 
 if (!empty($_POST['deshabilitaclass'])) {
-    $user = $_POST["deshabilitaclass"];
+    $clase = $_POST["deshabilitaclass"];
 
-    if (!$app->getDao()->deshabilitarClase($user))
+    if (!$app->getDao()->deshabilitarClase($clase))
         echo "<p>".$app->getDao()->error."</p>";
-    else
-        App::refreshPage();
+    //else
+        //App::refreshPage();
 
 }
 
 if (!empty($_POST['borrarclass'])) {
-    $user = $_POST["borrarclass"];
+    $clase = $_POST["borrarclass"];
 
-    if (!$app->getDao()->deletetAula($user))
+    if (!$app->getDao()->deletetAula($clase))
         echo "<p>".$app->getDao()->error."</p>";
     else
         App::refreshPage();
@@ -55,51 +55,47 @@ else{
     if(count($listEstudiantes)==0)
         echo "<p>No hay aulas dadas de alta en el sistema</p>";
     //2.2 Si hay aulas
-    else{
+    else {
         echo "<table class='table'>";
 
         App::print_listAulas();
 
         echo "<tbody>";
         foreach ($listEstudiantes as $fila) {
-            if($fila['deshabilitada'])
+            if ($fila['deshabilitada'])
                 echo '<tr style=\'color:red;\'>';
             else
                 echo "<tr>";
 
-            echo "<td>".$fila['nombre']."</td>";
-            echo "<td>".substr($fila['descripcion'], 0, 50)."</td><td>".$fila['ubicacion']."</td>";
+            echo "<td>" . $fila['nombre'] . "</td>";
+            echo "<td>" . substr($fila['descripcion'], 0, 50) . "</td><td>" . $fila['ubicacion'] . "</td>";
 
-            if($fila['tic'] == 0) {
+            if ($fila['tic'] == 0) {
                 echo "<td>";
                 echo 'NO';
                 echo "</td><td></td>";
-            }
-            else{
+            } else {
                 echo "<td>";
                 echo 'SI';
-                echo "</td><td>".$fila['numordenadores']."</td>";
+                echo "</td><td>" . $fila['numordenadores'] . "</td>";
             }
+
             echo '<form method="post">';
-            if(!$fila['deshabilitada']) {
-                echo '<td><button type=\"submit\" class="btn btn-success" name="reserveclass" value="';
-                echo $fila["nombre"];
-                echo '" onclick="return confirm( "¿Confirmas la reserva?");">Reservar aula</button></td>';
-                //echo "<td><a href=\"#\" class=\"btn btn-success\" role=\"button\">Reservar aula</a></td>";
-            }
-            else {
+            if (!$fila['deshabilitada']) {
+                echo '<td><button type=\"submit\" class="btn btn-success" name="reserveclass" value=' . $fila["nombre"] . ' onclick="return confirm( "¿Confirmas la reserva?");">Reservar aula</button></td>';
+            } else {
                 echo "<td><button type=\"submit\" class='btn btn-secondary' name=\"reserveclass\" value=\"\" onclick=\"return false;\">Reservar aula</button></td>";
-                //echo "<td><a href=\"#\" class=\"btn btn-secondary\" role=\"button\ onclick=\"return false;\">Reservar aula</a></td>";
             }
-            echo '<td><button type="submit" class="btn btn-danger" name="borrarclass" value='.$fila['nombre'].' onclick="return confirm(\'¿Seguro que quieres BORRAR EL AULA '.strtoupper ($fila['nombre']).' PERMANENTEMENTE?\');">Borrar aula</button></td>';
-            echo "<td><a href=\"#\" class=\"btn btn-info\" role=\"button\">Editar aula</a></td>";
-            //echo "<td><a href=\"#\" class=\"btn btn-danger\" role=\"button\">Eliminar aula</a></td>";
-            if($fila['deshabilitada'])
-                echo '<td><button type="submit" class="btn btn-dark" name="habilitaclass" value='.$fila['nombre'].' onclick="return confirm(\'¿Seguro que quieres habilitar el aula '.$fila['nombre'].'?\');">Habilitar aula</button></td>';
+            if ($_SESSION['admin']) {
+                echo '<td><button type="submit" class="btn btn-danger" name="borrarclass" value=' . $fila['nombre'] . ' onclick="return confirm(\'¿Seguro que quieres BORRAR EL AULA ' . strtoupper($fila['nombre']) . ' PERMANENTEMENTE?\');">Borrar aula</button></td>';
+                echo "<td><a href=\"#\" class=\"btn btn-info\" role=\"button\">Editar aula</a></td>";
 
-            else
-                echo '<td><button type="submit" class="btn btn-dark" name="deshabilitaclass" value='.$fila['nombre'].' onclick="return confirm(\'¿Seguro que quieres deshabilitar el aula '.$fila['nombre'].'?\');">Deshabilitar aula</button></td>';
+                if ($fila['deshabilitada'])
+                    echo '<td><button type="submit" class="btn btn-dark" name="habilitaclass" value=' . $fila['nombre'] . ' onclick="return confirm(\'¿Seguro que quieres habilitar el aula ' . $fila['nombre'] . '?\');">Habilitar aula</button></td>';
 
+                else
+                    echo '<td><button type="submit" class="btn btn-dark" name="deshabilitaclass" value=' . $fila['nombre'] . ' onclick="return confirm(\'¿Seguro que quieres deshabilitar el aula ' . $fila['nombre'] . '?\');">Deshabilitar aula</button></td>';
+            }
             echo '</form>';
             echo "</tr>";
         }

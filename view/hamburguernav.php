@@ -27,6 +27,7 @@ require('../core/Language.php');
         <div class="item">Aulas
             <ul class="sublist">
                 <li><a class="nav-item nav-link fondo" href="../pages/anadirAula.php"><?php echo $aula_anadir; ?></a></li>
+                <li><a class="nav-item nav-link fondo" href="../pages/buscaraula.php"><?php echo $aula_buscar; ?></a></li>
                 <li><a class="nav-item nav-link fondo" href="../pages/listarAulas.php"><?php echo $aula_listar; ?></a></li>
             </ul>
         </div>

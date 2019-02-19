@@ -4,9 +4,9 @@ $app = new App();
 $app->validateSesion();
 App::print_head();
 App::print_hamburguer();
-App::print_createClassForm();
+
 if(!empty($_POST['addclass'])){
-    $nombre = str_replace(' ', '', $_POST['name']);
+    $nombre = $_POST['name'];
     $descripcion = $_POST['description'];
     $posicion = $_POST['position'];
     $_POST["estic"] = isset($_POST["estic"]) ? $_POST["estic"] : 0;
@@ -21,7 +21,13 @@ if(!empty($_POST['addclass'])){
     $resultset = $app->insertAula($nombre, $descripcion,$posicion,$estic,$pccount);
 
     if(!$resultset == null)
-        echo "<div class=\"alert alert-success systemMsg\" role=\"alert\"><p>Aula añadida a la base de datos con éxito</p></div>";
+        echo "<div class=\"alert alert-success\" role=\"alert\"><p class=\"text-justify\">Aula añadida a la base de datos con éxito</p></div>";
     else
-        echo "<div class=\"alert alert-danger systemMsg\" role=\"alert\"><p>Error al insertar el aula :".$app->getDao()->error."</p></div>";
+        echo "<div class=\"alert alert-danger\" role=\"alert\"><p class=\"text-justify\">Error al insertar el aula :".$app->getDao()->error."</p></div>";
 }
+
+
+include_once('../view/buscarform.php');
+
+
+App::print_footer();

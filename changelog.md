@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
   
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) to format this changelog.
 
+## [0.9.0] - 2019-02-15
+
+### Added
+- Añadida la vista con distintos permisos en listar aulas.
+- Añadido el campo para anular reserva en listar reservas.
+- Creado el fichero `view/openformListaulas.php`.
+- Creada la tabla log.
+
+
 ## [0.8.1] - 2019-02-13
 
 ### Added
@@ -24,7 +33,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Contenido de `view/acercaDe.php` .
 
 ### Fixed
--Mensaje al administrador al borrar la reserva no mostraba el nombre del usuario, sino del aula, esto se ha arreglado.
+- Mensaje al administrador al borrar la reserva no mostraba el nombre del usuario, sino del aula, esto se ha arreglado.
 
 
 ## [0.7.0] - 2019-02-11 

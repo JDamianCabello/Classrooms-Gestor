@@ -1,9 +1,10 @@
 <?php
-
+include_once("../.idea/psw.php");
 define('DATABASE', 'gestionaulas');
 define('HOST', 'localhost');
 define('USER', 'root');
 define('PASS', '');
+//define('PASS', $psw);
 
 define('DSN', "mysql:host=" . HOST . ";dbname=" . DATABASE);
 
@@ -60,8 +61,10 @@ class Dao
     {
         try {
             $sql = "INSERT INTO " . TABLE_AULA . " (nombre, descripcion, ubicacion, tic, numordenadores) VALUES ('" . $nombre . "','" . $descripcion . "','" . $posicion . "','" . $estic . "','" . $pccount . "')";
-            $resultset = $this->conn->query($sql);
-            return $resultset;
+            if($this->insertaLog("INSERT",$_SESSION['user']." creó un aula.", $_SESSION['user'], $sql)) {
+                $resultset = $this->conn->query($sql);
+                return $resultset;
+            }
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }
@@ -71,10 +74,11 @@ class Dao
     {
         try {
             $sql = "DELETE FROM ".TABLE_RESERVE." WHERE nreserva ='".$numreserva."'";
-            var_dump($sql);
-            $resultset = $this->conn->query($sql);
+            if($this->insertaLog("DELETE",$_SESSION['user']." canceló una reserva.", $_SESSION['user'], $sql)) {
+                $resultset = $this->conn->query($sql);
 
-            return $resultset;
+                return $resultset;
+            }
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }
@@ -84,8 +88,10 @@ class Dao
     {
         try {
             $sql = "DELETE FROM ".TABLE_AULA." WHERE nombre ='".$nombre."'";
-            $resultset = $this->conn->query($sql);
-            return $resultset;
+            if($this->insertaLog("DELETE",$_SESSION['user']." eliminó un aula.", $_SESSION['user'], $sql)) {
+                $resultset = $this->conn->query($sql);
+                return $resultset;
+            }
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }
@@ -93,11 +99,12 @@ class Dao
 
     function  insertUser($user, $name, $pass, $email, $date){
         try {
-            $sql = "INSERT INTO ".TABLE_USER. "(nombre, fnac, email, admin, usuario, password) VALUES ('".$name."','".$date."','".$email."',0,'".$user."',SHA2(\"".$pass."\",512))";
+            $sql = "INSERT INTO ".TABLE_USER. "(nombre, fnac, email, admin, usuario, password) VALUES ('".$name."','".$date."','".$email."',0,'".$user."','".$pass."')";
             if ($this->conn->exec($sql) === false){
                 return false;
             }else {
-                return true;
+                if($this->insertaLog("INSERT","Nuevo usuario registrado, ¡Bienvenido, ".$user."!", $sql))
+                    return true;
             }
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
@@ -108,7 +115,6 @@ class Dao
         try {
             if($hora == 'all'){
                 $sql = "SELECT * FROM ".TABLE_RESERVE." WHERE aula = '".$aula."' AND fecha = '".$fecha."'";
-
                 $stmt = $this->conn->query($sql);
                 if ($stmt->rowCount() != 0) {
                     return false;
@@ -118,10 +124,12 @@ class Dao
             }
             else
                 $sql = "INSERT INTO ".TABLE_RESERVE. "(usuario, aula, fecha, tramo, motivo) VALUES ('".$usuario."','".$aula."','".$fecha."','".$hora."','".$motivo."')";
-            if ($this->conn->exec($sql) === false){
-                return false;
-            }else {
-                return true;
+            if($this->insertaLog("INSERT",$_SESSION['user']." reservó un aula.", $_SESSION['user'], $sql)) {
+                if ($this->conn->exec($sql) === false) {
+                    return false;
+                } else {
+                    return true;
+                }
             }
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
@@ -169,8 +177,11 @@ class Dao
     {
         try {
             $sql = "UPDATE aula SET deshabilitada='1' WHERE nombre='".$nombre."'";
+            var_dump($sql);
+            if($this->insertaLog("UPDATE","Deshabilitó el aula ".$nombre, $sql)){
             $resultset = $this->conn->query($sql);
             return $resultset;
+        }
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }
@@ -180,8 +191,29 @@ class Dao
     {
         try {
             $sql = "UPDATE aula SET deshabilitada='0' WHERE nombre='".$nombre."'";
-            $resultset = $this->conn->query($sql);
-            return $resultset;
+            var_dump($sql);
+            if($this->insertaLog("UPDATE","Habilitó el aula ".$nombre, $sql)) {
+                $resultset = $this->conn->query($sql);
+                return $resultset;
+            }
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+        }
+    }
+
+    function insertaLog($action,$fullaction,$sql){
+        try {
+            if($_SESSION['user'] == "")
+                $sql = "INSERT INTO log(usuario, shortaccion, fullacion, sqlcommand, datetime) VALUES ('SYSTEM','".$action."','".$fullaction."',\"".$sql."\",NOW())";
+            else
+                $sql = "INSERT INTO log(usuario, shortaccion, fullacion, sqlcommand, datetime) VALUES ('".$_SESSION['user']."','".$action."','".$fullaction."',\"".$sql."\",NOW())";
+
+            var_dump($sql);
+            if ($this->conn->exec($sql) === false){
+                return false;
+            }else {
+                return true;
+            }
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }

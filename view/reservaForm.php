@@ -17,7 +17,6 @@ require ('../core/Language.php');
     <form method="post">
         <p>Elige el aula [las tic´s muestran un ordenador]</p>
         <select name="aula" required>
-            <option value="volvo" disabled>Volvo</option>
             <?php
             foreach ($listaulas as $item) {
                 echo "<option value=".$item['nombre'];

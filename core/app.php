@@ -22,8 +22,12 @@ class App {
     }
 
     static function printNav(){
-        //include('../view/mainnav.php');
         include('../view/hamburguernav.php');
+    }
+
+    static function openForm(){
+        //include('../view/mainnav.php');
+        include('../view/openformListaulas.php');
     }
 
     static function printExternalNav(){
